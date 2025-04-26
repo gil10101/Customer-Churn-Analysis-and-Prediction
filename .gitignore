@@ -1,0 +1,8 @@
+# Ignore all files in the data directory
+data/*
+
+# Virtual environment
+.venv/
+
+# utils
+utils/*
