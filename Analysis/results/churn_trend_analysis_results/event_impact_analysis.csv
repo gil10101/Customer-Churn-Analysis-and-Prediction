@@ -1,0 +1,12 @@
+event_date,event_name,event_category,pre_event_rate,post_event_rate,absolute_change,percent_change,t_statistic,p_value,significant
+2020-03-15,COVID-19 Lockdown,External,0.0,0.0,0.0,inf,,,
+2020-05-01,Price Increase,Pricing,0.0,0.0,0.0,inf,,,
+2020-07-15,New Competitor Entry,Competition,0.0,0.0,0.0,inf,,,
+2020-09-01,Service Outage,Service Issue,0.0,0.0,0.0,inf,,,
+2020-11-15,Black Friday Promotion,Promotion,0.0,0.0,0.0,inf,,,
+2021-01-10,New Feature Launch,Product,0.0,0.0,0.0,inf,,,
+2021-03-01,Customer Service Enhancement,Service Improvement,0.0,0.0,0.0,inf,,,
+2021-05-15,System Upgrade,Service Issue,0.0,0.0,0.0,inf,,,
+2021-07-01,Loyalty Program Launch,Retention,0.0,0.0,0.0,inf,,,
+2021-09-15,Competitor Price Drop,Competition,0.0,0.0,0.0,inf,,,
+2021-11-25,Holiday Promotion,Promotion,0.0,0.0,0.0,inf,,,

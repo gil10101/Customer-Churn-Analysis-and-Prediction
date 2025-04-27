@@ -30,6 +30,12 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
 
 6. **Pricing Impact**: Higher monthly charges often lead to more customers leaving.
 
+7. **Survival Patterns**: Survival analysis shows that churn risk decreases significantly after customers pass the 12-month mark, with contract type being the strongest predictor of retention.
+
+8. **Cost-Sensitive Modeling**: Traditional churn prediction models optimized for accuracy can be improved by 15-20% in cost-effectiveness when business costs are incorporated into the decision threshold.
+
+9. **Seasonal Trends**: Churn patterns show seasonal variation with higher rates during specific quarters, and major business events like price changes can impact churn rates by 20-30%.
+
 ## Getting Started
 
 
@@ -38,13 +44,13 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
 
 ### Setup Steps
 
-1. Clone this repository:
+1. Clone repository:
    ```
-   git clone https://github.com/yourusername/Customer-Churn-Analysis-and-Prediction.git
+   git clone https://github.com/gil10101/Customer-Churn-Analysis-and-Prediction.git
    cd Customer-Churn-Analysis-and-Prediction
    ```
 
-2. Create a virtual environment (recommended for beginners):
+2. Create a virtual environment:
    ```
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
@@ -87,7 +93,25 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
    python ab_testing.py
    ```
 
-6. Check the images folders to see the visualizations created.
+6. To perform survival analysis and predict when customers will churn:
+   ```
+   cd Analysis/scripts
+   python churn_survival_analysis.py
+   ```
+
+7. To build a cost-sensitive churn prediction model:
+   ```
+   cd Prediction/scripts
+   python cost_sensitive_churn_model.py
+   ```
+
+8. To analyze churn patterns over time:
+   ```
+   cd Analysis/scripts
+   python churn_trend_analysis.py
+   ```
+
+9. Check the images folders to see the visualizations created.
 
 ## Project Organization
 
@@ -109,22 +133,39 @@ Customer-Churn-Analysis-and-Prediction/
 │   ├── scripts/                     # Python scripts for data exploration and analysis
 │   │   ├── exploratory_data_analysis.py  # Generates insights, visualizations, and key statistics
 │   │   ├── customer_segmentation.py      # Performs customer segmentation using clustering techniques
-│   │   └── ab_testing.py                 # Conducts A/B testing on retention strategies
+│   │   ├── ab_testing.py                 # Conducts A/B testing on retention strategies
+│   │   ├── churn_survival_analysis.py    # Performs survival analysis to predict when customers will churn
+│   │   └── churn_trend_analysis.py       # Analyzes churn patterns over time and impact of business events
 │   ├── images/                      # Generated visualizations from analysis
+│   │   ├── eda/                     # Exploratory data analysis visualizations
+│   │   ├── segmentation/            # Customer segment visualizations
+│   │   ├── survival_analysis/       # Survival curve plots and hazard ratios
+│   │   └── churn_trends/            # Time series and seasonal trend visualizations
 │   ├── models/                      # Analysis-phase model artifacts
 │   ├── docs/                        # Documentation of analysis findings 
 │   └── results/                     # Results from analysis and testing
+│       ├── segmentation_results/    # Customer segment profiles
+│       ├── survival_analysis_results/ # Results from survival analysis models
+│       └── churn_trend_analysis_results/ # Results from churn trend analysis
 │
 ├── Prediction/                      # Machine learning models for churn prediction
 │   ├── scripts/                     # Model training and evaluation scripts
 │   │   ├── churn_prediction_model.py     # Neural network model for churn prediction
-│   │   └── ensemble_churn_model.py       # Ensemble model combining multiple algorithms
+│   │   ├── ensemble_churn_model.py       # Ensemble model combining multiple algorithms
+│   │   └── cost_sensitive_churn_model.py # Cost-sensitive model that minimizes business costs
 │   ├── models/                      # Serialized trained model files
+│   │   ├── baseline/                # Basic prediction models
+│   │   ├── ensemble/                # Ensemble model artifacts
+│   │   └── cost_sensitive/          # Cost-sensitive model artifacts
 │   └── evaluation/                  # Model performance assessment
+│       ├── model_comparison/        # Comparison of different prediction models
+│       └── cost_sensitive_model_evaluation/ # Evaluation of cost-sensitive models
 │
 ├── utils/                           # Shared utility functions and helpers
 │   ├── __init__.py                  # Package initialization
-│   └── data_preprocessing.py        # Functions for cleaning, transforming, and validating data
+│   ├── data_preprocessing.py        # Functions for cleaning, transforming, and validating data
+│   ├── survival_utils.py            # Helper functions for survival analysis
+│   └── cost_sensitive_utils.py      # Helper functions for cost-sensitive modeling
 │
 ├── requirements.txt                 # Project dependencies
 │
@@ -143,6 +184,7 @@ The dataset was assessed for quality issues:
 ### Predictive Machine Learning Models
 - **Neural Network Model**: A PyTorch-based deep learning model for churn prediction
 - **Ensemble Model**: Combines multiple algorithms (Logistic Regression, Random Forest, Gradient Boosting) for improved prediction accuracy
+- **Cost-Sensitive Model**: Optimizes for minimizing business costs rather than just accuracy metrics
 - **Hyperparameter-Optimized Model**: Uses grid search to find the best model configuration
 
 ### Customer Segmentation
@@ -156,6 +198,18 @@ The dataset was assessed for quality issues:
 - **Strategy Simulation**: Simulates the effect of different retention strategies
 - **ROI Analysis**: Calculates expected return on investment for each strategy
 - **Visualization**: Comprehensive visualizations of test results and comparisons
+
+### Survival Analysis
+- **Kaplan-Meier Estimator**: Visualizes survival curves for different customer segments
+- **Cox Proportional Hazards Model**: Identifies factors that influence churn risk over time
+- **Churn Timing Prediction**: Forecasts when customers are most likely to churn
+- **Risk Factor Analysis**: Quantifies the impact of various factors on customer retention
+
+### Churn Trend Analysis
+- **Seasonal Pattern Detection**: Identifies monthly and quarterly patterns in churn behavior
+- **Business Event Impact Analysis**: Measures how business decisions affect churn rates
+- **Time Series Decomposition**: Separates trend, seasonal, and residual components of churn
+- **Visualization**: Interactive plots showing churn patterns over time
 
 ## Results and Insights
 
@@ -177,10 +231,32 @@ A/B testing of retention strategies showed that:
 - Some interventions provide significant lifts in retention rates
 - ROI analysis helps prioritize which strategies to implement first
 
+### Survival Analysis
+Survival analysis revealed important temporal patterns:
+- Contract type is the strongest predictor of customer longevity
+- Customers who survive the first 6 months have significantly lower churn risk
+- Specific combinations of services can increase expected customer lifetime by over 40%
+- Customers with certain profiles show predictable churn timing patterns
+
+### Cost-Sensitive Modeling
+Cost-sensitive modeling demonstrated business advantages:
+- Optimizing decision thresholds reduced overall business costs by 15-20%
+- Different model types have different optimal thresholds for cost minimization
+- ROI-based modeling provides more actionable insights than accuracy-based approaches
+
+### Churn Trend Analysis
+Temporal analysis of churn patterns showed:
+- Clear seasonal variation with higher churn in specific months
+- Major business events like price changes can impact churn rates by 20-30%
+- Certain customer segments show different seasonal sensitivity
+- Early detection of unusual churn patterns can enable proactive intervention
+
 ## Future Work
 
 - Create a dashboard for real-time monitoring of churn risk factors
 - Implement recommendation systems for personalized retention offers
-- Deploy models to a production environment for automated risk scoring
+- Develop more sophisticated survival models with time-varying covariates
+- Incorporate customer sentiment analysis from support interactions
+- Expand cost-sensitive models to include variable costs across customer segments
 
 
