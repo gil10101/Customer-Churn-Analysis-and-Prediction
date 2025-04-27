@@ -1,0 +1,6 @@
+strategy_id,strategy_name,target_segment,baseline_retention,treatment_retention,absolute_difference,relative_lift,p_value,is_significant,sample_size_required,cost_per_customer,estimated_roi
+discount_offer,Discount Offer,Price-Sensitive Churners,0.65,0.7519083969465649,0.10687022900763354,16.5680473372781,0.0001636554759730313,True,524,45,137.4893977947412
+service_upgrade,Free Service Upgrade,High-Value At-Risk,0.7,0.7543655413271245,0.051222351571594826,7.284768211920523,0.01695686999966603,True,859,60,-14.629414047341955
+tech_support,Free Premium Technical Support,Fiber Optic Users,0.58,0.7004405286343612,0.1299559471365639,22.77992277992278,4.739535022181185e-05,True,454,50,159.91189427312776
+contract_incentive,Contract Incentive,Month-to-Month Customers,0.55,0.640926640926641,0.084942084942085,15.277777777777787,0.04862612516544232,True,259,70,21.345835631549985
+loyalty_program,Enhanced Loyalty Program,Long-Term Customers,0.85,0.8858267716535433,0.03887795275590544,4.590354445090056,0.0002702542944380757,True,2032,25,55.51181102362176

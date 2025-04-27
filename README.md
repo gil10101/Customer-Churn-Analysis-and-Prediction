@@ -52,7 +52,7 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
 
 3. Install the required packages:
    ```
-   pip install pandas numpy matplotlib seaborn scikit-learn
+   pip install -r requirements.txt
    ```
 
 ### Running the Analysis
@@ -69,7 +69,25 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
    python churn_prediction_model.py
    ```
 
-3. Check the images folder to see the visualizations created.
+3. To run the ensemble prediction model:
+   ```
+   cd Prediction/scripts
+   python ensemble_churn_model.py
+   ```
+
+4. To perform customer segmentation:
+   ```
+   cd Analysis/scripts
+   python customer_segmentation.py
+   ```
+
+5. To run A/B testing on retention strategies:
+   ```
+   cd Analysis/scripts
+   python ab_testing.py
+   ```
+
+6. Check the images folders to see the visualizations created.
 
 ## Project Organization
 
@@ -90,15 +108,17 @@ Customer-Churn-Analysis-and-Prediction/
 ├── Analysis/                        # Customer data analysis module
 │   ├── scripts/                     # Python scripts for data exploration and analysis
 │   │   ├── exploratory_data_analysis.py  # Generates insights, visualizations, and key statistics
-│   │   └── churn_prediction_model.py     # Initial model implementation in analysis phase
+│   │   ├── customer_segmentation.py      # Performs customer segmentation using clustering techniques
+│   │   └── ab_testing.py                 # Conducts A/B testing on retention strategies
 │   ├── images/                      # Generated visualizations from analysis
 │   ├── models/                      # Analysis-phase model artifacts
 │   ├── docs/                        # Documentation of analysis findings 
-│   └── data/                        # Processed data from analysis
+│   └── results/                     # Results from analysis and testing
 │
 ├── Prediction/                      # Machine learning models for churn prediction
 │   ├── scripts/                     # Model training and evaluation scripts
-│   │   └── churn_prediction_model.py # Implements and trains ML models for churn prediction
+│   │   ├── churn_prediction_model.py     # Neural network model for churn prediction
+│   │   └── ensemble_churn_model.py       # Ensemble model combining multiple algorithms
 │   ├── models/                      # Serialized trained model files
 │   └── evaluation/                  # Model performance assessment
 │
@@ -118,11 +138,49 @@ The dataset was assessed for quality issues:
 - Missing values were identified in the 'TotalCharges' column for customers with 0 tenure
 - Appropriate data type conversions were applied (e.g., converting categorical variables)
 
+## Key Features
+
+### Predictive Machine Learning Models
+- **Neural Network Model**: A PyTorch-based deep learning model for churn prediction
+- **Ensemble Model**: Combines multiple algorithms (Logistic Regression, Random Forest, Gradient Boosting) for improved prediction accuracy
+- **Hyperparameter-Optimized Model**: Uses grid search to find the best model configuration
+
+### Customer Segmentation
+- **KMeans Clustering**: Automatically groups customers into segments with similar characteristics
+- **Advanced DBSCAN Clustering**: Identifies complex customer segments of arbitrary shapes
+- **Segment Profiling**: Detailed analysis of each customer segment, including churn risk and key attributes
+- **Marketing Strategy Generation**: Customized retention approaches for each customer segment
+
+### A/B Testing Framework
+- **Test Planning**: Determines required sample sizes and statistical power
+- **Strategy Simulation**: Simulates the effect of different retention strategies
+- **ROI Analysis**: Calculates expected return on investment for each strategy
+- **Visualization**: Comprehensive visualizations of test results and comparisons
+
+## Results and Insights
+
+### Predictive Models
+The ensemble model achieved strong performance metrics with:
+- High accuracy in identifying customers at risk of churning
+- Feature importance analysis identifying key churn indicators
+- Model comparisons to determine the most effective approach
+
+### Customer Segments
+Customer segmentation revealed distinct groups with:
+- Varying churn rates and risk profiles
+- Different spending patterns and service preferences
+- Unique characteristics requiring targeted retention approaches
+
+### A/B Testing
+A/B testing of retention strategies showed that:
+- Different strategies work best for different customer segments
+- Some interventions provide significant lifts in retention rates
+- ROI analysis helps prioritize which strategies to implement first
+
 ## Future Work
 
-- Develop predictive machine learning models for churn probability
-- Perform customer segmentation using clustering techniques
 - Create a dashboard for real-time monitoring of churn risk factors
-- Conduct A/B testing on retention strategies based on key findings
+- Implement recommendation systems for personalized retention offers
+- Deploy models to a production environment for automated risk scoring
 
 
