@@ -215,10 +215,11 @@ def correlation_analysis(df):
     
     # Plot correlation heatmap
     plt.figure(figsize=(16, 14))
-    mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
-    sns.heatmap(corr_matrix, mask=mask, annot=False, cmap='coolwarm', center=0,
-                linewidths=0.5, cbar_kws={"shrink": .8})
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0,
+                linewidths=0.5, cbar_kws={"shrink": .8}, fmt='.2f', annot_kws={'size': 8})
     plt.title('Feature Correlation Heatmap')
+    plt.xticks(rotation=90)
+    plt.yticks(rotation=0)
     plt.tight_layout()
     plt.savefig('../images/correlation_heatmap.png')
     
@@ -392,31 +393,10 @@ def main():
     # Prepare data for analysis
     df_analysis = prepare_data_for_analysis(df)
     
-    # Perform basic EDA
-    basic_eda(df_analysis)
-    
-    # Clean the data (performed by the utility, just show report)
-    data_cleaning(df_analysis)
-    
-    # Visualize categorical features
-    visualize_categorical_features(df_analysis)
-    
-    # Visualize numerical features
-    visualize_numerical_features(df_analysis)
-    
-    # Correlation analysis
+    # Only run correlation analysis
+    print("Generating correlation heatmap...")
     correlation_analysis(df_analysis)
-    
-    # Feature importance
-    feature_importance(df_analysis)
-    
-    # Customer segments analysis
-    customer_segments_analysis(df_analysis)
-    
-    # Create comprehensive summary
-    comprehensive_summary()
-    
-    print("\nAnalysis completed. Results saved to ../docs/ and ../images/ directories.")
+    print("Done! Check the correlation heatmap in ../images/correlation_heatmap.png")
 
 if __name__ == "__main__":
     main() 
