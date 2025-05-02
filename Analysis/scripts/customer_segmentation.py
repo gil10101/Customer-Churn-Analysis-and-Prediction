@@ -15,17 +15,26 @@ from sklearn.cluster import KMeans, DBSCAN
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score
-import umap
+import umap.umap_ as umap
 import joblib
 import os
 
 # Import common utilities
 from utils.data_preprocessing import load_telco_data, get_numerical_categorical_columns
 
+# Get the absolute path to the Analysis directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+analysis_dir = os.path.dirname(script_dir)
+
 # Create directories if they don't exist
-os.makedirs('../models', exist_ok=True)
-os.makedirs('../images', exist_ok=True)
-os.makedirs('../docs', exist_ok=True)
+models_dir = os.path.join(analysis_dir, 'models')
+images_dir = os.path.join(analysis_dir, 'images')
+docs_dir = os.path.join(analysis_dir, 'docs')
+data_dir = os.path.join(analysis_dir, 'data')
+
+os.makedirs(models_dir, exist_ok=True)
+os.makedirs(images_dir, exist_ok=True)
+os.makedirs(docs_dir, exist_ok=True)
 
 def prepare_data_for_clustering(df):
     """
@@ -44,16 +53,21 @@ def prepare_data_for_clustering(df):
     # Make a copy to avoid modifying the original
     df_cluster = df.copy()
     
-    # Keep only customers who have not churned for proactive strategies
-    # df_cluster = df_cluster[df_cluster['Churn'] == 'No']
-    
-    # Drop customerID and Churn (we'll add it back later for analysis)
+    # Drop customerID 
     if 'customerID' in df_cluster.columns:
         df_cluster = df_cluster.drop('customerID', axis=1)
     
     # Convert 'TotalCharges' to numeric
     df_cluster['TotalCharges'] = pd.to_numeric(df_cluster['TotalCharges'], errors='coerce')
-    df_cluster['TotalCharges'].fillna(0, inplace=True)
+    df_cluster['TotalCharges'] = df_cluster['TotalCharges'].fillna(0)
+    
+    # Handle 'Churn' column - extract before one-hot encoding
+    churn_column = None
+    if 'Churn' in df_cluster.columns:
+        churn_values = df_cluster['Churn'].copy()
+        churn_column = pd.Series(np.where(churn_values == 'Yes', 1, 0), index=df_cluster.index)
+        # Remove Churn from the dataframe to prevent it from being one-hot encoded
+        df_cluster = df_cluster.drop('Churn', axis=1)
     
     # Identify numerical and categorical columns
     numerical_cols, categorical_cols = get_numerical_categorical_columns(df_cluster)
@@ -61,11 +75,12 @@ def prepare_data_for_clustering(df):
     # One-hot encode categorical columns
     df_encoded = pd.get_dummies(df_cluster, columns=categorical_cols)
     
-    # Handle 'Churn' column - remove from feature set but keep for analysis
-    churn_column = None
-    if 'Churn_Yes' in df_encoded.columns:
-        churn_column = df_encoded['Churn_Yes']
-        df_encoded = df_encoded.drop('Churn_Yes', axis=1)
+    # Verify that we have only numerical data before scaling
+    for col in df_encoded.columns:
+        if not pd.api.types.is_numeric_dtype(df_encoded[col]):
+            print(f"Warning: Column {col} is not numeric. Converting to numeric.")
+            df_encoded[col] = pd.to_numeric(df_encoded[col], errors='coerce')
+            df_encoded[col] = df_encoded[col].fillna(0)
     
     # Scale features
     scaler = StandardScaler()
@@ -120,7 +135,7 @@ def determine_optimal_clusters(features, max_clusters=10):
     plt.grid(True)
     
     plt.tight_layout()
-    plt.savefig('../images/optimal_clusters.png')
+    plt.savefig(os.path.join(images_dir, 'optimal_clusters.png'))
     
     # Find optimal K using both methods
     # For elbow method - find the "elbow" point using second derivative
@@ -162,12 +177,12 @@ def perform_kmeans_clustering(features, n_clusters, feature_names=None):
     centers = kmeans.cluster_centers_
     
     # Save the model
-    joblib.dump(kmeans, '../models/kmeans_customer_segments.joblib')
+    joblib.dump(kmeans, os.path.join(models_dir, 'kmeans_customer_segments.joblib'))
     
     # If feature names are provided, create a DataFrame with cluster centers
     if feature_names is not None:
         centers_df = pd.DataFrame(centers, columns=feature_names)
-        centers_df.to_csv('../docs/cluster_centers.csv', index=False)
+        centers_df.to_csv(os.path.join(data_dir, 'cluster_centers.csv'), index=False)
     
     return kmeans, labels, centers
 
@@ -200,7 +215,7 @@ def visualize_clusters_pca(features, labels, n_components=2):
     sns.scatterplot(x='PC1', y='PC2', hue='Cluster', data=pca_df, palette='viridis', s=50, alpha=0.7)
     plt.title('Customer Segments - PCA Visualization')
     plt.tight_layout()
-    plt.savefig('../images/pca_clusters.png')
+    plt.savefig(os.path.join(images_dir, 'pca_clusters.png'))
     
     # Calculate explained variance ratio
     explained_variance = np.sum(pca.explained_variance_ratio_) * 100
@@ -235,7 +250,7 @@ def visualize_clusters_umap(features, labels):
     sns.scatterplot(x='UMAP1', y='UMAP2', hue='Cluster', data=umap_df, palette='viridis', s=50, alpha=0.7)
     plt.title('Customer Segments - UMAP Visualization')
     plt.tight_layout()
-    plt.savefig('../images/umap_clusters.png')
+    plt.savefig(os.path.join(images_dir, 'umap_clusters.png'))
     
     return reducer, embedding
 
@@ -291,7 +306,7 @@ def analyze_clusters(df, labels, feature_names, churn_column=None):
     profiles_df = pd.DataFrame(cluster_profiles)
     
     # Save profiles to CSV
-    profiles_df.to_csv('../docs/cluster_profiles.csv', index=False)
+    profiles_df.to_csv(os.path.join(data_dir, 'cluster_profiles.csv'), index=False)
     
     # Create visualizations for each cluster
     
@@ -300,7 +315,7 @@ def analyze_clusters(df, labels, feature_names, churn_column=None):
     sns.barplot(x='Cluster', y='Size', data=profiles_df)
     plt.title('Cluster Sizes')
     plt.tight_layout()
-    plt.savefig('../images/cluster_sizes.png')
+    plt.savefig(os.path.join(images_dir, 'cluster_sizes.png'))
     
     # If churn column is available, visualize churn rate by cluster
     if churn_column is not None:
@@ -309,7 +324,7 @@ def analyze_clusters(df, labels, feature_names, churn_column=None):
         plt.title('Churn Rate by Cluster')
         plt.ylabel('Churn Rate (%)')
         plt.tight_layout()
-        plt.savefig('../images/cluster_churn_rates.png')
+        plt.savefig(os.path.join(images_dir, 'cluster_churn_rates.png'))
     
     # Heatmap of cluster centers (for numerical features)
     numerical_features = [f'Avg_{col}' for col in numerical_cols]
@@ -320,10 +335,10 @@ def analyze_clusters(df, labels, feature_names, churn_column=None):
         sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt='.2f')
         plt.title('Cluster Centers Heatmap (Numerical Features)')
         plt.tight_layout()
-        plt.savefig('../images/cluster_centers_heatmap.png')
+        plt.savefig(os.path.join(images_dir, 'cluster_centers_heatmap.png'))
     
     # Generate detailed report
-    with open('../docs/cluster_analysis.md', 'w') as f:
+    with open(os.path.join(docs_dir, 'cluster_analysis.md'), 'w') as f:
         f.write("# Customer Segmentation Analysis\n\n")
         
         f.write("## Cluster Profiles\n\n")
@@ -374,44 +389,6 @@ def analyze_clusters(df, labels, feature_names, churn_column=None):
             f.write("\n")
     
     return profiles_df
-
-def perform_advanced_segmentation_dbscan(features, eps=0.5, min_samples=5):
-    """
-    Perform DBSCAN clustering for advanced segmentation
-    
-    Parameters:
-    -----------
-    features : numpy.ndarray
-        Scaled features for clustering
-    eps : float
-        The maximum distance between two samples for one to be considered as 
-        in the neighborhood of the other
-    min_samples : int
-        The number of samples in a neighborhood for a point to be considered as a core point
-        
-    Returns:
-    --------
-    tuple
-        (dbscan_model, labels)
-    """
-    # Initialize and fit DBSCAN
-    dbscan = DBSCAN(eps=eps, min_samples=min_samples)
-    dbscan.fit(features)
-    
-    # Get cluster labels
-    labels = dbscan.labels_
-    
-    # Count number of clusters (excluding noise if present)
-    n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
-    n_noise = list(labels).count(-1)
-    
-    print(f"Number of clusters: {n_clusters}")
-    print(f"Number of noise points: {n_noise} ({n_noise/len(labels)*100:.2f}% of data)")
-    
-    # Save the model
-    joblib.dump(dbscan, '../models/dbscan_customer_segments.joblib')
-    
-    return dbscan, labels
 
 def generate_marketing_strategies(cluster_profiles):
     """
@@ -502,10 +479,10 @@ def generate_marketing_strategies(cluster_profiles):
     strategies_df = pd.DataFrame(strategies)
     
     # Save strategies to CSV
-    strategies_df.to_csv('../docs/marketing_strategies.csv', index=False)
+    strategies_df.to_csv(os.path.join(data_dir, 'marketing_strategies.csv'), index=False)
     
     # Generate detailed strategies document
-    with open('../docs/marketing_strategies.md', 'w') as f:
+    with open(os.path.join(docs_dir, 'marketing_strategies.md'), 'w') as f:
         f.write("# Targeted Marketing Strategies by Customer Segment\n\n")
         
         for _, strategy in strategies_df.iterrows():
@@ -521,6 +498,44 @@ def generate_marketing_strategies(cluster_profiles):
             f.write("---\n\n")
     
     return strategies_df
+
+def perform_advanced_segmentation_dbscan(features, eps=0.5, min_samples=5):
+    """
+    Perform DBSCAN clustering for advanced segmentation
+    
+    Parameters:
+    -----------
+    features : numpy.ndarray
+        Scaled features for clustering
+    eps : float
+        The maximum distance between two samples for one to be considered as 
+        in the neighborhood of the other
+    min_samples : int
+        The number of samples in a neighborhood for a point to be considered as a core point
+        
+    Returns:
+    --------
+    tuple
+        (dbscan_model, labels)
+    """
+    # Initialize and fit DBSCAN
+    dbscan = DBSCAN(eps=eps, min_samples=min_samples)
+    dbscan.fit(features)
+    
+    # Get cluster labels
+    labels = dbscan.labels_
+    
+    # Count number of clusters (excluding noise if present)
+    n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
+    n_noise = list(labels).count(-1)
+    
+    print(f"Number of clusters: {n_clusters}")
+    print(f"Number of noise points: {n_noise} ({n_noise/len(labels)*100:.2f}% of data)")
+    
+    # Save the model
+    joblib.dump(dbscan, os.path.join(models_dir, 'dbscan_customer_segments.joblib'))
+    
+    return dbscan, labels
 
 def main():
     """Main function to run the customer segmentation pipeline"""
@@ -592,7 +607,7 @@ def main():
     plt.ylabel(f'{k}-th Nearest Neighbor Distance')
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig('../images/k_distance_graph.png')
+    plt.savefig(os.path.join(images_dir, 'k_distance_graph.png'))
     
     # Find the "elbow" in the k-distance graph
     # For simplicity, we'll choose a reasonable eps value based on visual inspection
