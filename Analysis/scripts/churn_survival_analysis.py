@@ -18,7 +18,7 @@ from sklearn.model_selection import train_test_split
 
 # Add the parent directory to the path to import from utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-from utils.data_preprocessing import load_and_preprocess_data
+from utils.data_preprocessing import load_telco_data
 
 # Get the project root directory
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
@@ -253,6 +253,23 @@ def generate_survival_analysis_report(cph, survival_df):
         f.writelines(report)
     
     print("Survival analysis report generated successfully.")
+
+def load_and_preprocess_data():
+    """
+    Load and preprocess the telco customer churn data.
+    
+    Returns:
+    --------
+    pandas.DataFrame
+        Preprocessed dataframe ready for survival analysis
+    """
+    # Load the data using the utility function
+    data_path = os.path.join(PROJECT_ROOT, 'data', 'WA_Fn-UseC_-Telco-Customer-Churn.csv')
+    df = load_telco_data(data_path)
+    
+    # Additional preprocessing specific to survival analysis if needed
+    
+    return df
 
 def main():
     # Load and preprocess the data
