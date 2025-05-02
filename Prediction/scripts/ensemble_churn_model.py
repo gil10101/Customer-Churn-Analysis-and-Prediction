@@ -25,10 +25,17 @@ warnings.filterwarnings('ignore')
 # Import common utilities
 from utils.data_preprocessing import load_telco_data, prepare_data_for_modeling
 
+# Get absolute paths for directories
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, '../..'))
+models_dir = os.path.join(project_root, 'Prediction', 'models')
+eval_images_dir = os.path.join(project_root, 'Prediction', 'evaluation', 'images')
+eval_docs_dir = os.path.join(project_root, 'Prediction', 'evaluation', 'docs')
+
 # Create directories if they don't exist
-os.makedirs('../models', exist_ok=True)
-os.makedirs('../evaluation/images', exist_ok=True)
-os.makedirs('../evaluation/docs', exist_ok=True)
+os.makedirs(models_dir, exist_ok=True)
+os.makedirs(eval_images_dir, exist_ok=True)
+os.makedirs(eval_docs_dir, exist_ok=True)
 
 def build_and_train_ensemble_model(X_train, y_train, cv=5):
     """
@@ -74,7 +81,9 @@ def build_and_train_ensemble_model(X_train, y_train, cv=5):
         feature_importances = ensemble.named_estimators_['random_forest'].feature_importances_
     
     # Save model
-    joblib.dump(ensemble, '../models/ensemble_churn_model.joblib')
+    model_path = os.path.join(models_dir, 'ensemble_churn_model.joblib')
+    joblib.dump(ensemble, model_path)
+    print(f"Ensemble model saved to {model_path}")
     
     return ensemble, feature_importances
 
@@ -138,7 +147,9 @@ def train_optimized_model(X_train, y_train, X_test, y_test, feature_names):
     print(classification_report(y_test, y_pred))
     
     # Save model
-    joblib.dump(best_model, '../models/optimized_gb_model.joblib')
+    model_path = os.path.join(models_dir, 'optimized_gb_model.joblib')
+    joblib.dump(best_model, model_path)
+    print(f"Optimized GB model saved to {model_path}")
     
     return best_model, feature_importances
 
@@ -166,7 +177,11 @@ def visualize_feature_importance(feature_importances, feature_names, model_name=
     sns.barplot(x='Importance', y='Feature', data=importance_df.head(15))
     plt.title(f'Top 15 Features by Importance ({model_name})')
     plt.tight_layout()
-    plt.savefig(f'../evaluation/images/feature_importance_{model_name.lower().replace(" ", "_")}.png')
+    
+    # Save with absolute path
+    image_path = os.path.join(eval_images_dir, f'feature_importance_{model_name.lower().replace(" ", "_")}.png')
+    plt.savefig(image_path)
+    print(f"Feature importance visualization saved to {image_path}")
     
     return importance_df
 
@@ -217,7 +232,11 @@ def evaluate_model(model, X_test, y_test, model_name="Model"):
     plt.ylabel('Actual')
     plt.xlabel('Predicted')
     plt.tight_layout()
-    plt.savefig(f'../evaluation/images/confusion_matrix_{model_name.lower().replace(" ", "_")}.png')
+    
+    # Save with absolute path
+    cm_path = os.path.join(eval_images_dir, f'confusion_matrix_{model_name.lower().replace(" ", "_")}.png')
+    plt.savefig(cm_path)
+    print(f"Confusion matrix saved to {cm_path}")
     
     # ROC Curve
     fpr, tpr, _ = roc_curve(y_test, y_pred_proba)
@@ -233,10 +252,15 @@ def evaluate_model(model, X_test, y_test, model_name="Model"):
     plt.title(f'ROC Curve - {model_name}')
     plt.legend(loc="lower right")
     plt.tight_layout()
-    plt.savefig(f'../evaluation/images/roc_curve_{model_name.lower().replace(" ", "_")}.png')
+    
+    # Save with absolute path
+    roc_path = os.path.join(eval_images_dir, f'roc_curve_{model_name.lower().replace(" ", "_")}.png')
+    plt.savefig(roc_path)
+    print(f"ROC curve saved to {roc_path}")
     
     # Save evaluation results
-    with open(f'../evaluation/docs/{model_name.lower().replace(" ", "_")}_evaluation.md', 'w') as f:
+    eval_file = os.path.join(eval_docs_dir, f'{model_name.lower().replace(" ", "_")}_evaluation.md')
+    with open(eval_file, 'w') as f:
         f.write(f"# {model_name} Evaluation\n\n")
         
         f.write("## Evaluation Metrics\n\n")
@@ -256,6 +280,8 @@ def evaluate_model(model, X_test, y_test, model_name="Model"):
         f.write("- The model's strength is in its ability to combine multiple algorithms, reducing overfitting and improving generalization.\n")
         f.write("- To further improve performance, consider feature engineering, collecting more data, or exploring deep learning approaches.\n")
     
+    print(f"Evaluation results saved to {eval_file}")
+    
     return {
         'accuracy': accuracy,
         'precision': precision,
@@ -273,9 +299,9 @@ def main():
     print("Loading and preprocessing data...")
     
     # Use absolute path with os.path.join to ensure correct path resolution
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.abspath(os.path.join(current_dir, '../..'))
     data_path = os.path.join(project_root, 'data', 'WA_Fn-UseC_-Telco-Customer-Churn.csv')
+    
+    print(f"Attempting to load data from: {data_path}")
     
     # Ensure file exists before proceeding
     if not os.path.exists(data_path):
@@ -319,7 +345,8 @@ def main():
     print(comparison_df)
     
     # Save comparison to markdown
-    with open('../evaluation/docs/model_comparison.md', 'w') as f:
+    comparison_file = os.path.join(eval_docs_dir, 'model_comparison.md')
+    with open(comparison_file, 'w') as f:
         f.write("# Model Comparison\n\n")
         f.write(comparison_df.to_markdown())
         f.write("\n\n## Conclusion\n\n")
@@ -328,9 +355,10 @@ def main():
         f.write(f"The {best_model} performs better overall based on F1 score, which balances precision and recall.\n")
         f.write("This model should be used for production deployment for churn prediction.\n")
     
+    print(f"\nModel comparison saved to {comparison_file}")
     print("\nModel training and evaluation completed successfully.")
-    print("Results saved to ../evaluation/docs/")
-    print("Visualizations saved to ../evaluation/images/")
+    print(f"Results saved to {eval_docs_dir}")
+    print(f"Visualizations saved to {eval_images_dir}")
 
 if __name__ == "__main__":
     main() 

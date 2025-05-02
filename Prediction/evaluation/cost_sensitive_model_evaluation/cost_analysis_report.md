@@ -15,7 +15,7 @@ This report presents the results of cost-sensitive churn prediction models. The 
 | Model | Total Cost | Cost Savings | Annual Savings (Estimated) | Optimal Threshold |
 |-------|------------|--------------|----------------------------|------------------|
 | logistic_regression | $93300.00 | $93700.00 | $1124400.00 | 0.340 |
-| random_forest | $95400.00 | $91600.00 | $1099200.00 | 0.150 |
+| random_forest | $97900.00 | $89100.00 | $1069200.00 | 0.180 |
 | gradient_boosting | $93400.00 | $93600.00 | $1123200.00 | 0.210 |
 | xgboost | $96600.00 | $90400.00 | $1084800.00 | 0.230 |
 
@@ -23,7 +23,7 @@ This report presents the results of cost-sensitive churn prediction models. The 
 | Model | Accuracy | Precision | Recall | F1 Score |
 |-------|----------|-----------|--------|----------|
 | logistic_regression | 0.674 | 0.444 | 0.912 | 0.597 |
-| random_forest | 0.676 | 0.445 | 0.890 | 0.593 |
+| random_forest | 0.690 | 0.455 | 0.850 | 0.593 |
 | gradient_boosting | 0.722 | 0.486 | 0.850 | 0.619 |
 | xgboost | 0.697 | 0.462 | 0.853 | 0.599 |
 
@@ -46,5 +46,5 @@ By implementing the cost-sensitive logistic_regression model, the business can e
 |------|-------|-------------|----------------|-----------------------------|
 | 1 | logistic_regression | $93700.00 | $1124400.00 | 50.1% |
 | 2 | gradient_boosting | $93600.00 | $1123200.00 | 50.1% |
-| 3 | random_forest | $91600.00 | $1099200.00 | 49.0% |
-| 4 | xgboost | $90400.00 | $1084800.00 | 48.3% |
+| 3 | xgboost | $90400.00 | $1084800.00 | 48.3% |
+| 4 | random_forest | $89100.00 | $1069200.00 | 47.6% |

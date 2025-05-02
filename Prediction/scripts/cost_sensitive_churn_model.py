@@ -22,16 +22,38 @@ import joblib
 
 # Add the parent directory to the path to import from utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-from utils.data_preprocessing import load_and_preprocess_data
+from utils.data_preprocessing import load_telco_data
 
 # Create directories for saving results and models if they don't exist
 # Get the project root directory
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
 MODELS_DIR = os.path.join(PROJECT_ROOT, 'Prediction', 'models', 'cost_sensitive')
 EVAL_DIR = os.path.join(PROJECT_ROOT, 'Prediction', 'evaluation', 'cost_sensitive_model_evaluation')
+DATA_PATH = os.path.join(PROJECT_ROOT, 'data', 'WA_Fn-UseC_-Telco-Customer-Churn.csv')
 
 os.makedirs(MODELS_DIR, exist_ok=True)
 os.makedirs(EVAL_DIR, exist_ok=True)
+
+def load_and_preprocess_data():
+    """
+    Load and preprocess the Telco Customer Churn dataset.
+    
+    Returns:
+    --------
+    pd.DataFrame
+        Preprocessed dataframe
+    """
+    # Load the data using the load_telco_data function from utils
+    df = load_telco_data(DATA_PATH)
+    
+    # Additional preprocessing specific to this model
+    # Convert SeniorCitizen from No/Yes to 0/1 if needed
+    if df['SeniorCitizen'].dtype == 'object':
+        df['SeniorCitizen'] = df['SeniorCitizen'].map({'No': 0, 'Yes': 1})
+    
+    # Convert Churn from No/Yes to 0/1 (already handled in the class's prepare_data method)
+    
+    return df
 
 class CostSensitiveChurnModel:
     """
@@ -135,7 +157,9 @@ class CostSensitiveChurnModel:
             self.models[name] = model
             
             # Save the model
-            joblib.dump(model, os.path.join(MODELS_DIR, f'{name}_model.pkl'))
+            model_path = os.path.join(MODELS_DIR, f'{name}_model.pkl')
+            joblib.dump(model, model_path)
+            print(f"Model saved to {model_path}")
         
         print("All models trained successfully.")
     
@@ -253,8 +277,11 @@ class CostSensitiveChurnModel:
         plt.grid(True, alpha=0.3)
         plt.legend()
         plt.tight_layout()
-        plt.savefig(os.path.join(EVAL_DIR, f'{model_name}_threshold_optimization.png'))
+        
+        image_path = os.path.join(EVAL_DIR, f'{model_name}_threshold_optimization.png')
+        plt.savefig(image_path)
         plt.close()
+        print(f"Threshold optimization plot saved to {image_path}")
         
         return optimal_threshold
     
@@ -359,8 +386,10 @@ class CostSensitiveChurnModel:
             plt.xlabel('Predicted label')
         
         plt.tight_layout()
-        plt.savefig(os.path.join(EVAL_DIR, 'confusion_matrices.png'))
+        image_path = os.path.join(EVAL_DIR, 'confusion_matrices.png')
+        plt.savefig(image_path)
         plt.close()
+        print(f"Confusion matrices saved to {image_path}")
     
     def plot_roc_curves(self):
         """
@@ -408,8 +437,11 @@ class CostSensitiveChurnModel:
         plt.legend(loc='lower right')
         plt.grid(True, alpha=0.3)
         plt.tight_layout()
-        plt.savefig(os.path.join(EVAL_DIR, 'roc_curves.png'))
+        
+        image_path = os.path.join(EVAL_DIR, 'roc_curves.png')
+        plt.savefig(image_path)
         plt.close()
+        print(f"ROC curves saved to {image_path}")
     
     def plot_feature_importance(self, model_name):
         """
@@ -438,8 +470,11 @@ class CostSensitiveChurnModel:
         plt.yticks(range(len(indices)), [self.feature_names[i] for i in indices])
         plt.xlabel('Relative Importance')
         plt.tight_layout()
-        plt.savefig(os.path.join(EVAL_DIR, f'{model_name}_feature_importance.png'))
+        
+        image_path = os.path.join(EVAL_DIR, f'{model_name}_feature_importance.png')
+        plt.savefig(image_path)
         plt.close()
+        print(f"Feature importance plot saved to {image_path}")
     
     def generate_cost_analysis_report(self, evaluation_results):
         """
@@ -534,8 +569,10 @@ class CostSensitiveChurnModel:
             report.append(f"| {i+1} | {name} | ${cost_savings:.2f} | ${annual_savings:.2f} | {improvement_pct:.1f}% |\n")
         
         # Write report to markdown file
-        with open(os.path.join(EVAL_DIR, 'cost_analysis_report.md'), 'w') as f:
+        report_path = os.path.join(EVAL_DIR, 'cost_analysis_report.md')
+        with open(report_path, 'w') as f:
             f.writelines(report)
+        print(f"Cost analysis report saved to {report_path}")
         
         # Create JSON report
         json_report = {
@@ -566,8 +603,10 @@ class CostSensitiveChurnModel:
         
         # Save JSON report
         import json
-        with open(os.path.join(EVAL_DIR, 'cost_analysis_report.json'), 'w') as f:
+        json_path = os.path.join(EVAL_DIR, 'cost_analysis_report.json')
+        with open(json_path, 'w') as f:
             json.dump(json_report, f, indent=4)
+        print(f"Cost analysis JSON report saved to {json_path}")
         
         # Print summary table to console
         print("\nSummary of Models Ranked by Cost Savings:")
