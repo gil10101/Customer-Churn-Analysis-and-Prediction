@@ -1,0 +1,51 @@
+{
+  "silhouette_score": 0.687,
+  "davies_bouldin_score": 0.423,
+  "calinski_harabasz_score": 1254.78,
+  "optimal_clusters": 6,
+  "cluster_sizes": {
+    "0": 872,
+    "1": 1124,
+    "2": 637,
+    "3": 789,
+    "4": 342,
+    "5": 524
+  },
+  "churn_rates_by_cluster": {
+    "0": 0.14,
+    "1": 0.42,
+    "2": 0.08,
+    "3": 0.29,
+    "4": 0.68,
+    "5": 0.18
+  },
+  "inertia": 1867.42,
+  "variance_explained": 0.782,
+  "cluster_dispersion": {
+    "0": 84.32,
+    "1": 102.76,
+    "2": 78.53,
+    "3": 95.21,
+    "4": 118.37,
+    "5": 89.64
+  },
+  "algorithm": "K-Means",
+  "preprocessing": "StandardScaler + PCA",
+  "features_used": [
+    "MonthlyCharges",
+    "TotalCharges",
+    "tenure",
+    "InternetService",
+    "Contract",
+    "PaymentMethod",
+    "OnlineSecurity",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+    "PhoneService",
+    "MultipleLines",
+    "OnlineBackup",
+    "DeviceProtection",
+    "PaperlessBilling"
+  ]
+} 

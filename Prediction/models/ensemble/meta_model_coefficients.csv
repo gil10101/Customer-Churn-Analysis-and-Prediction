@@ -1,0 +1,4 @@
+Model,Coefficient
+random_forest,1.4950735138225624
+gradient_boosting,0.8333276106873421
+xgboost,3.9655921412895654

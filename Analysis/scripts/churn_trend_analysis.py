@@ -20,7 +20,7 @@ from sklearn.linear_model import LinearRegression
 
 # Add the parent directory to the path to import from utils
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
-from utils.data_preprocessing import load_and_preprocess_data
+from utils.data_preprocessing import load_telco_data
 
 # Get the project root directory
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
@@ -636,7 +636,7 @@ def generate_trend_analysis_report(churn_over_time, monthly_churn, event_impact_
 
 def main():
     # Load and preprocess the data
-    df = load_and_preprocess_data()
+    df = load_telco_data()
     
     # Create synthetic dates for analysis
     # Note: In a real-world scenario, you would use actual customer join and churn dates

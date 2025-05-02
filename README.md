@@ -111,6 +111,18 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
    python churn_trend_analysis.py
    ```
 
+9. To analyze and visualize customer segments:
+   ```
+   cd Analysis/scripts
+   python generate_segmentation_images.py
+   ```
+
+10. To compare different model performances:
+    ```
+    cd Prediction/evaluation/model_comparison
+    python comparison_analysis.py
+    ```
+
 9. Check the images folders to see the visualizations created.
 
 ## Project Organization
@@ -118,7 +130,12 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
 The project is organized into folders:
 - **data**: Contains the customer dataset
 - **Analysis**: Scripts and visualizations for exploring the data
+  - **results/segmentation_results**: Customer segment profiles and clustering metrics
+  - **images/segmentation**: Visualizations of customer segments
 - **Prediction**: Models for predicting which customers might leave
+  - **models/baseline**: Baseline prediction models like logistic regression
+  - **models/ensemble**: Advanced ensemble models combining multiple algorithms
+  - **evaluation/model_comparison**: Comparative analysis of different model performances
 - **utils**: Helper functions used across the project
 
 ## File Structure

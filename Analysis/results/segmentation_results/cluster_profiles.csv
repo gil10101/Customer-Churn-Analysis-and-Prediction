@@ -1,0 +1,7 @@
+Cluster,Size,ChurnRate,AvgMonthlyCharges,AvgTotalCharges,AvgTenure,InternetService,Contract,PaymentMethod,Description
+0,872,0.14,56.34,2892.16,38.7,Fiber optic,Two year,Bank transfer,Low-risk long-term customers with high-value fiber optic service
+1,1124,0.42,82.76,1723.43,18.9,Fiber optic,Month-to-month,Electronic check,High-risk tech-savvy customers with premium services but month-to-month contracts
+2,637,0.08,78.92,4268.35,54.2,Fiber optic,Two year,Credit card,Very low-risk loyal customers with premium services
+3,789,0.29,64.23,1224.78,17.4,DSL,Month-to-month,Electronic check,Moderate-risk customers with basic internet services
+4,342,0.68,89.16,852.42,8.6,Fiber optic,Month-to-month,Electronic check,Very high-risk new customers with expensive services
+5,524,0.18,42.75,1876.34,35.2,DSL,One year,Bank transfer,Low-risk value-oriented customers with basic services 
