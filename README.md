@@ -152,12 +152,15 @@ Customer-Churn-Analysis-and-Prediction/
 │   │   ├── customer_segmentation.py      # Performs customer segmentation using clustering techniques
 │   │   ├── ab_testing.py                 # Conducts A/B testing on retention strategies
 │   │   ├── churn_survival_analysis.py    # Performs survival analysis to predict when customers will churn
-│   │   └── churn_trend_analysis.py       # Analyzes churn patterns over time and impact of business events
+│   │   ├── churn_trend_analysis.py       # Analyzes churn patterns over time and impact of business events
+│   │   ├── generate_correlation_heatmap.py  # Creates correlation heatmap for feature relationships
+│   │   └── generate_segmentation_images.py  # Produces visualizations of customer segments
 │   ├── images/                      # Generated visualizations from analysis
 │   │   ├── eda/                     # Exploratory data analysis visualizations
 │   │   ├── segmentation/            # Customer segment visualizations
 │   │   ├── survival_analysis/       # Survival curve plots and hazard ratios
-│   │   └── churn_trends/            # Time series and seasonal trend visualizations
+│   │   ├── churn_trends/            # Time series and seasonal trend visualizations
+│   │   └── correlation/             # Feature correlation heatmaps
 │   ├── models/                      # Analysis-phase model artifacts
 │   ├── docs/                        # Documentation of analysis findings 
 │   └── results/                     # Results from analysis and testing
@@ -175,6 +178,8 @@ Customer-Churn-Analysis-and-Prediction/
 │   │   ├── ensemble/                # Ensemble model artifacts
 │   │   └── cost_sensitive/          # Cost-sensitive model artifacts
 │   └── evaluation/                  # Model performance assessment
+│       ├── docs/                    # Documentation of evaluations and comparison
+│       ├── images/                  # General images from model testing
 │       ├── model_comparison/        # Comparison of different prediction models
 │       └── cost_sensitive_model_evaluation/ # Evaluation of cost-sensitive models
 │
