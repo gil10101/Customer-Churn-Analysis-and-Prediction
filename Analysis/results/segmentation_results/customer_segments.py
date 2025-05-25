@@ -167,16 +167,23 @@ def create_segment_visualizations(data, profiles):
         columns=segment_means.columns
     )
     
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(30, 20))
     sns.heatmap(
         segment_means_scaled.T, 
         cmap='coolwarm',
         annot=True,
         fmt='.2f',
-        linewidths=.5
+        linewidths=.5,
+        cbar_kws={'label': 'Normalized Value'}
     )
     plt.title('Normalized Average Values of Features by Segment')
     plt.xlabel('Segment')
+    plt.ylabel('Features')
+    
+    # Ensure proper axis label display
+    plt.xticks(rotation=0)
+    plt.yticks(rotation=0)
+    
     plt.tight_layout()
     save_figure(plt, os.path.join(output_dir, 'segment_features_heatmap.png'))
     plt.close()

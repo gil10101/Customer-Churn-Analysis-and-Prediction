@@ -15,9 +15,14 @@ from sklearn.cluster import KMeans, DBSCAN
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score
-import umap.umap_ as umap
 import joblib
 import os
+
+# Disable UMAP due to TensorFlow compatibility issues
+# UMAP has dependency conflicts with newer TensorFlow versions
+UMAP_AVAILABLE = False
+print("Note: UMAP disabled due to TensorFlow compatibility issues.")
+print("Using PCA for dimensionality reduction visualization instead.")
 
 # Import common utilities
 from utils.data_preprocessing import load_telco_data, get_numerical_categorical_columns
@@ -234,8 +239,12 @@ def visualize_clusters_umap(features, labels):
     labels : numpy.ndarray
         Cluster labels from KMeans
     """
+    if not UMAP_AVAILABLE:
+        print("UMAP not available. Skipping UMAP visualization.")
+        return None, None
+        
     # Apply UMAP
-    reducer = umap.UMAP(random_state=42)
+    reducer = UMAP(random_state=42)
     embedding = reducer.fit_transform(features)
     
     # Create DataFrame for visualization
@@ -251,6 +260,7 @@ def visualize_clusters_umap(features, labels):
     plt.title('Customer Segments - UMAP Visualization')
     plt.tight_layout()
     plt.savefig(os.path.join(images_dir, 'umap_clusters.png'))
+    plt.close()
     
     return reducer, embedding
 
@@ -311,31 +321,54 @@ def analyze_clusters(df, labels, feature_names, churn_column=None):
     # Create visualizations for each cluster
     
     # Bar chart of cluster sizes
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(30, 20))
     sns.barplot(x='Cluster', y='Size', data=profiles_df)
     plt.title('Cluster Sizes')
+    plt.xlabel('Cluster')
+    plt.ylabel('Size')
+    # Ensure all cluster labels are shown
+    plt.xticks(range(len(profiles_df)), profiles_df['Cluster'].astype(str), rotation=45)
     plt.tight_layout()
-    plt.savefig(os.path.join(images_dir, 'cluster_sizes.png'))
+    plt.savefig(os.path.join(images_dir, 'cluster_sizes.png'), dpi=300, bbox_inches='tight')
+    plt.close()
     
     # If churn column is available, visualize churn rate by cluster
     if churn_column is not None:
-        plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(30, 20))
         sns.barplot(x='Cluster', y='Churn_Rate', data=profiles_df)
         plt.title('Churn Rate by Cluster')
+        plt.xlabel('Cluster')
         plt.ylabel('Churn Rate (%)')
+        # Ensure all cluster labels are shown properly
+        plt.xticks(range(len(profiles_df)), profiles_df['Cluster'].astype(str), rotation=45)
         plt.tight_layout()
-        plt.savefig(os.path.join(images_dir, 'cluster_churn_rates.png'))
+        plt.savefig(os.path.join(images_dir, 'cluster_churn_rates.png'), dpi=300, bbox_inches='tight')
+        plt.close()
     
     # Heatmap of cluster centers (for numerical features)
     numerical_features = [f'Avg_{col}' for col in numerical_cols]
     
     if len(numerical_features) > 0:
-        plt.figure(figsize=(12, 10))
+        plt.figure(figsize=(50, 50))
         heatmap_data = profiles_df.set_index('Cluster')[numerical_features]
-        sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt='.2f')
+        
+        # Create cleaner feature names for display
+        clean_feature_names = [col.replace('Avg_', '') for col in numerical_features]
+        heatmap_data.columns = clean_feature_names
+        
+        sns.heatmap(heatmap_data, annot=True, cmap='viridis', fmt='.2f', 
+                   cbar_kws={'label': 'Average Value'})
         plt.title('Cluster Centers Heatmap (Numerical Features)')
+        plt.xlabel('Features')
+        plt.ylabel('Cluster')
+        
+        # Rotate x-axis labels for better readability
+        plt.xticks(rotation=45, ha='right')
+        plt.yticks(rotation=0)
+        
         plt.tight_layout()
-        plt.savefig(os.path.join(images_dir, 'cluster_centers_heatmap.png'))
+        plt.savefig(os.path.join(images_dir, 'cluster_centers_heatmap.png'), dpi=300, bbox_inches='tight')
+        plt.close()
     
     # Generate detailed report
     with open(os.path.join(docs_dir, 'cluster_analysis.md'), 'w') as f:
@@ -573,10 +606,10 @@ def main():
     pca, principal_components = visualize_clusters_pca(features_scaled, labels)
     
     # Visualize clusters using UMAP
-    try:
+    if UMAP_AVAILABLE:
         umap_reducer, embedding = visualize_clusters_umap(features_scaled, labels)
-    except ImportError:
-        print("UMAP not installed. Skipping UMAP visualization.")
+    else:
+        print("UMAP not available. Skipping UMAP visualization.")
     
     # Analyze clusters
     cluster_profiles = analyze_clusters(df_encoded, labels, feature_names, churn_column)
