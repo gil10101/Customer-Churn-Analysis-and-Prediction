@@ -63,7 +63,7 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
 
 ### Running the Analysis
 
-#### Interactive Jupyter Notebooks (Recommended)
+#### Interactive Jupyter Notebooks
 1. Launch Jupyter environment:
    ```
    jupyter notebook notebooks/
@@ -76,7 +76,7 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
 
 3. Execute notebooks sequentially (01-08) for complete analysis
 
-#### Script-Based Analysis (Alternative)
+#### Script-Based Analysis
 1. To explore the data:
    ```
    cd Analysis/scripts
@@ -145,14 +145,14 @@ The project is organized into folders:
 - **notebooks**: Interactive Jupyter notebooks for comprehensive analysis (NEW)
   - Complete end-to-end analysis workflow with professional documentation
   - 9 specialized notebooks covering EDA, modeling, and business insights
-  - Modern data science implementations with advanced visualization
+  - Data science implementations with comprehensive visualization
 - **data**: Contains the customer dataset
 - **Analysis**: Scripts and visualizations for exploring the data
   - **results/segmentation_results**: Customer segment profiles and clustering metrics
   - **images/segmentation**: Visualizations of customer segments
 - **Prediction**: Models for predicting which customers might leave
   - **models/baseline**: Baseline prediction models like logistic regression
-  - **models/ensemble**: Advanced ensemble models combining multiple algorithms
+  - **models/ensemble**: Ensemble models combining multiple algorithms
   - **evaluation/model_comparison**: Comparative analysis of different model performances
 - **utils**: Helper functions used across the project
 
@@ -163,9 +163,9 @@ Customer-Churn-Analysis-and-Prediction/
 │
 ├── notebooks/                       # Interactive Jupyter notebooks (NEW)
 │   ├── 00_master_analysis_overview.ipynb     # Central navigation and project controller
-│   ├── 01_exploratory_data_analysis.ipynb   # Comprehensive EDA with advanced statistics
+│   ├── 01_exploratory_data_analysis.ipynb   # Comprehensive EDA with statistical analysis
 │   ├── 02_customer_segmentation.ipynb       # Multi-algorithm clustering analysis
-│   ├── 03_churn_prediction_modeling.ipynb   # Advanced ML model implementations
+│   ├── 03_churn_prediction_modeling.ipynb   # ML model implementations
 │   ├── 04_survival_analysis.ipynb           # Time-to-event modeling and retention
 │   ├── 05_ab_testing_framework.ipynb        # Statistical experimentation framework
 │   ├── 06_cost_sensitive_modeling.ipynb     # Business-optimized prediction models
@@ -241,7 +241,7 @@ The dataset was assessed for quality issues:
 
 ### Customer Segmentation
 - **KMeans Clustering**: Automatically groups customers into segments with similar characteristics
-- **Advanced DBSCAN Clustering**: Identifies complex customer segments of arbitrary shapes
+- **DBSCAN Clustering**: Identifies complex customer segments of arbitrary shapes
 - **Segment Profiling**: Detailed analysis of each customer segment, including churn risk and key attributes
 - **Marketing Strategy Generation**: Customized retention approaches for each customer segment
 

@@ -14,7 +14,7 @@ xgboost
 lightgbm
 joblib
 
-# Advanced Analytics
+# Analytics
 lifelines
 umap-learn
 shap
@@ -58,6 +58,11 @@ mypy
 # Type Hints & Data Classes Support
 typing-extensions
 dataclasses-json
+
+# API Framework
+fastapi
+uvicorn[standard]
+python-multipart
 
 # Logging & Configuration
 pydantic
