@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Advanced Ensemble Model for Customer Churn Prediction
+# Ensemble Model for Customer Churn Prediction
 
 import sys
 import os
@@ -292,7 +292,7 @@ def evaluate_model(model, X_test, y_test, model_name="Model"):
 
 def main():
     """Main function to run the ensemble model pipeline"""
-    print("Advanced Ensemble Model for Customer Churn Prediction")
+    print("Ensemble Model for Customer Churn Prediction")
     print("="*50)
     
     # Load and preprocess data

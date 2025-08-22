@@ -532,9 +532,9 @@ def generate_marketing_strategies(cluster_profiles):
     
     return strategies_df
 
-def perform_advanced_segmentation_dbscan(features, eps=0.5, min_samples=5):
+def perform_dbscan_segmentation(features, eps=0.5, min_samples=5):
     """
-    Perform DBSCAN clustering for advanced segmentation
+    Perform DBSCAN clustering for customer segmentation
     
     Parameters:
     -----------
@@ -617,8 +617,8 @@ def main():
     # Generate marketing strategies
     marketing_strategies = generate_marketing_strategies(cluster_profiles)
     
-    # Try advanced segmentation with DBSCAN
-    print("\nPerforming advanced segmentation with DBSCAN...")
+    # Try segmentation with DBSCAN
+    print("\nPerforming segmentation with DBSCAN...")
     
     # Find appropriate eps parameter using k-distance graph
     from sklearn.neighbors import NearestNeighbors
@@ -648,7 +648,7 @@ def main():
     eps_value = np.percentile(distances, 10)  # Choose a value near the elbow
     
     # Perform DBSCAN clustering
-    dbscan_model, dbscan_labels = perform_advanced_segmentation_dbscan(features_scaled, eps=eps_value, min_samples=5)
+    dbscan_model, dbscan_labels = perform_dbscan_segmentation(features_scaled, eps=eps_value, min_samples=5)
     
     # If DBSCAN produced meaningful clusters, analyze them
     if len(set(dbscan_labels)) > 1:
