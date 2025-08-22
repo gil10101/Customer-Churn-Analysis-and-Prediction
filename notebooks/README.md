@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains a comprehensive suite of Jupyter notebooks implementing advanced data science methodologies for customer churn analysis and prediction. Each notebook follows modern data science best practices with professional documentation, rigorous statistical validation, and production-ready implementations.
+This directory contains a comprehensive suite of Jupyter notebooks implementing data science methodologies for customer churn analysis and prediction. Each notebook follows data science best practices with professional documentation, rigorous statistical validation, and production-ready implementations.
 
 ## Notebook Architecture
 
@@ -16,7 +16,7 @@ This directory contains a comprehensive suite of Jupyter notebooks implementing 
 ### 01. Exploratory Data Analysis (`01_exploratory_data_analysis.ipynb`)
 **Comprehensive statistical profiling and feature analysis**
 - Automated data quality assessment with custom metrics classes
-- Advanced correlation analysis with statistical significance testing
+- Correlation analysis with statistical significance testing
 - Distribution analysis with normality tests and outlier detection
 - Feature engineering recommendations based on statistical properties
 - Interactive visualizations using plotly and seaborn
@@ -28,7 +28,7 @@ This directory contains a comprehensive suite of Jupyter notebooks implementing 
 - Mutual information analysis for feature relevance
 
 ### 02. Customer Segmentation (`02_customer_segmentation.ipynb`)
-**Advanced unsupervised learning for customer profiling**
+**Unsupervised learning for customer profiling**
 - Multi-algorithm clustering: K-Means, DBSCAN, Hierarchical, Gaussian Mixture
 - Optimal cluster determination using Elbow Method, Silhouette Analysis, Gap Statistic
 - Dimensionality reduction with PCA, t-SNE, and UMAP visualization
@@ -38,7 +38,7 @@ This directory contains a comprehensive suite of Jupyter notebooks implementing 
 **Key Technical Features:**
 - Yellowbrick integration for clustering visualization
 - Custom cluster validation metrics
-- Advanced preprocessing pipelines with StandardScaler and RobustScaler
+- Preprocessing pipelines with StandardScaler and RobustScaler
 - Multi-dimensional visualization framework
 
 ### 03. Churn Prediction Modeling (`03_churn_prediction_modeling.ipynb`)
@@ -52,7 +52,7 @@ This directory contains a comprehensive suite of Jupyter notebooks implementing 
 **Key Technical Features:**
 - Custom PyTorch Dataset and DataLoader implementations
 - Ensemble methods with VotingClassifier and StackingClassifier
-- Advanced evaluation metrics including AUC-ROC, AUC-PR, and business metrics
+- Evaluation metrics including AUC-ROC, AUC-PR, and business metrics
 - Feature importance analysis with multiple methodologies
 
 ### 04. Survival Analysis (`04_survival_analysis.ipynb`)
@@ -80,7 +80,7 @@ This directory contains a comprehensive suite of Jupyter notebooks implementing 
 **Key Technical Features:**
 - Custom power analysis functions with effect size sensitivity
 - Bayesian posterior probability estimation
-- Advanced statistical testing with appropriate corrections
+- Statistical testing with appropriate corrections
 - Business impact quantification with financial modeling
 
 ### 06. Cost-Sensitive Modeling (`06_cost_sensitive_modeling.ipynb`)
@@ -109,7 +109,7 @@ This directory contains a comprehensive suite of Jupyter notebooks implementing 
 - Comprehensive metric portfolio including business-specific KPIs
 - Model calibration using CalibratedClassifierCV
 - Statistical significance testing for performance differences
-- Advanced visualization with radar charts and comparison matrices
+- Visualization with radar charts and comparison matrices
 
 ### 08. Business Insights and Recommendations (`08_business_insights_recommendations.ipynb`)
 **Strategic synthesis and actionable business intelligence**
@@ -154,7 +154,7 @@ jupyter notebook
 3. Allow 2-3 hours total runtime for complete analysis
 4. Each notebook can be run independently after prerequisites
 
-## Advanced Features
+## Key Features
 
 ### Professional Implementation Standards
 - Type hints and dataclass structures for code clarity
@@ -166,7 +166,7 @@ jupyter notebook
 - Appropriate hypothesis testing with multiple comparison corrections
 - Bootstrap confidence intervals for robust uncertainty quantification
 - Cross-validation with proper temporal consistency
-- Advanced statistical validation metrics
+- Statistical validation metrics
 
 ### Business Integration
 - Direct connection between statistical findings and business metrics
