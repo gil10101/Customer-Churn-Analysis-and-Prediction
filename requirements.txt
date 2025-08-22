@@ -1,14 +1,65 @@
+# Core Libraries
 pandas
 numpy
 matplotlib
 seaborn
 scikit-learn
-statsmodels
-torch
-umap-learn
-joblib
 scipy
+statsmodels
+
+# Machine Learning & Deep Learning
+torch
+torchvision
 xgboost
+lightgbm
+joblib
+
+# Advanced Analytics
 lifelines
-plotly
+umap-learn
 shap
+missingno
+
+# Visualization
+plotly
+plotly-express
+
+# Statistical Analysis & Testing
+pymc
+arviz
+
+# Cost-Sensitive Learning
+imbalanced-learn
+costcla
+
+# Hyperparameter Optimization
+optuna
+
+# Model Interpretation
+lime
+
+# Clustering Visualization
+yellowbrick
+
+# Financial Analysis
+numpy-financial
+
+# Jupyter Notebook Support
+jupyter
+ipywidgets
+notebook
+
+# Development & Testing
+pytest
+black
+flake8
+mypy
+
+# Type Hints & Data Classes Support
+typing-extensions
+dataclasses-json
+
+# Logging & Configuration
+pydantic
+python-dotenv
+structlog
