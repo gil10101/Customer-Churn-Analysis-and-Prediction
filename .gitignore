@@ -5,6 +5,5 @@ data/*
 .venv/
 
 # utils
-utils/*
 
 .kiro
