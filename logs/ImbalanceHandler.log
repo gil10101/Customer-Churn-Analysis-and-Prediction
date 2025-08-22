@@ -1,0 +1,113 @@
+2025-08-21 20:54:45,833 - notebook.ImbalanceHandler - INFO - info:105 - Applying smote oversampling
+2025-08-21 20:54:45,833 - notebook.ImbalanceHandler - INFO - info:105 - Original distribution: {0: 80, 1: 20}
+2025-08-21 20:54:45,842 - notebook.ImbalanceHandler - INFO - info:105 - Resampled distribution: {0: 80, 1: 80}
+2025-08-21 20:54:58,275 - notebook.ImbalanceHandler - INFO - info:105 - Applying smote oversampling
+2025-08-21 20:54:58,275 - notebook.ImbalanceHandler - INFO - info:105 - Original distribution: {0: 797, 1: 203}
+2025-08-21 20:54:58,437 - notebook.ImbalanceHandler - INFO - info:105 - Resampled distribution: {0: 797, 1: 797}
+2025-08-21 20:54:58,440 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:54:58,441 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6273525721455459, 1: 2.4630541871921183}
+2025-08-21 20:54:58,441 - notebook.ImbalanceHandler - INFO - info:105 - Creating balanced ensemble classifier
+2025-08-21 20:55:04,777 - notebook.ImbalanceHandler - INFO - info:105 - Applying strategy: smote_regular
+2025-08-21 20:55:53,387 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:55:53,388 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6717850287907869, 1: 1.9553072625698324}
+2025-08-21 20:55:53,417 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:55:53,417 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6717850287907869, 1: 1.9553072625698324}
+2025-08-21 20:55:53,677 - notebook.ImbalanceHandler - INFO - info:105 - Applying smote oversampling
+2025-08-21 20:55:53,677 - notebook.ImbalanceHandler - INFO - info:105 - Original distribution: {0: 1042, 1: 358}
+2025-08-21 20:55:53,747 - notebook.ImbalanceHandler - INFO - info:105 - Resampled distribution: {0: 1042, 1: 1042}
+2025-08-21 20:55:54,134 - notebook.ImbalanceHandler - INFO - info:105 - Applying borderline oversampling
+2025-08-21 20:55:54,134 - notebook.ImbalanceHandler - INFO - info:105 - Original distribution: {0: 1042, 1: 358}
+2025-08-21 20:55:54,145 - notebook.ImbalanceHandler - INFO - info:105 - Resampled distribution: {0: 1042, 1: 1042}
+2025-08-21 20:55:54,554 - notebook.ImbalanceHandler - INFO - info:105 - Applying adasyn oversampling
+2025-08-21 20:55:54,555 - notebook.ImbalanceHandler - INFO - info:105 - Original distribution: {0: 1042, 1: 358}
+2025-08-21 20:55:54,566 - notebook.ImbalanceHandler - INFO - info:105 - Resampled distribution: {0: 1042, 1: 1062}
+2025-08-21 20:55:54,971 - notebook.ImbalanceHandler - INFO - info:105 - Creating balanced ensemble classifier
+2025-08-21 20:55:57,205 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating imbalance handling strategies
+2025-08-21 20:55:57,206 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: class_weight_balanced
+2025-08-21 20:55:57,206 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:55:57,207 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:55:57,315 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:55:57,316 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:55:57,561 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:55:57,562 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:55:57,586 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: class_weight_custom
+2025-08-21 20:55:57,586 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:55:57,587 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:55:58,957 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:55:58,958 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:55:59,855 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:55:59,856 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:55:59,902 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: smote_regular
+2025-08-21 20:56:01,211 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: smote_borderline
+2025-08-21 20:56:01,518 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: adasyn
+2025-08-21 20:56:01,818 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: smote_svm
+2025-08-21 20:56:02,161 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: balanced_rf
+2025-08-21 20:56:02,401 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: easy_ensemble
+2025-08-21 20:56:03,365 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: smote_tomek
+2025-08-21 20:56:03,686 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: smote_enn
+2025-08-21 20:56:03,986 - notebook.ImbalanceHandler - INFO - info:105 - Completed evaluation of 26 strategy-model combinations
+2025-08-21 20:56:03,996 - notebook.ImbalanceHandler - INFO - info:105 - Finding optimal strategy based on roc_auc
+2025-08-21 20:56:03,996 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating imbalance handling strategies
+2025-08-21 20:56:03,997 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: class_weight_balanced
+2025-08-21 20:56:03,997 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:56:03,998 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:56:04,022 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:56:04,022 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:56:04,213 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:56:04,214 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:56:04,239 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: class_weight_custom
+2025-08-21 20:56:04,239 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:56:04,240 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:56:04,264 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:56:04,264 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:56:04,455 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 20:56:04,456 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6720430107526881, 1: 1.953125}
+2025-08-21 20:56:04,479 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: smote_regular
+2025-08-21 20:56:04,769 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: smote_borderline
+2025-08-21 20:56:05,069 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: adasyn
+2025-08-21 20:56:05,366 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: smote_svm
+2025-08-21 20:56:05,688 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: balanced_rf
+2025-08-21 20:56:05,942 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: easy_ensemble
+2025-08-21 20:56:06,907 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: smote_tomek
+2025-08-21 20:56:07,215 - notebook.ImbalanceHandler - INFO - info:105 - Evaluating strategy: smote_enn
+2025-08-21 20:56:07,515 - notebook.ImbalanceHandler - INFO - info:105 - Completed evaluation of 26 strategy-model combinations
+2025-08-21 20:56:07,516 - notebook.ImbalanceHandler - INFO - info:105 - Optimal strategy: smote_svm with roc_auc = 0.9870
+2025-08-21 21:14:40,175 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:14:40,182 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6273525721455459, 1: 2.4630541871921183}
+2025-08-21 21:14:42,407 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:14:42,408 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6273525721455459, 1: 2.4630541871921183}
+2025-08-21 21:14:55,085 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:14:55,086 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6198347107438017, 1: 2.586206896551724}
+2025-08-21 21:15:05,573 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:15:05,574 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.7172131147540983, 1: 1.650943396226415}
+2025-08-21 21:15:25,519 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:15:25,521 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.7172131147540983, 1: 1.650943396226415}
+2025-08-21 21:16:24,598 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:24,599 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6679389312977099, 1: 1.9886363636363635}
+2025-08-21 21:16:32,192 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:32,193 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6292134831460674, 1: 2.4347826086956523}
+2025-08-21 21:16:32,260 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:32,261 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6292134831460674, 1: 2.4347826086956523}
+2025-08-21 21:16:35,590 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:35,591 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6292134831460674, 1: 2.4347826086956523}
+2025-08-21 21:16:35,657 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:35,659 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6292134831460674, 1: 2.4347826086956523}
+2025-08-21 21:16:35,939 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:35,940 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6292134831460674, 1: 2.4347826086956523}
+2025-08-21 21:16:35,941 - notebook.ImbalanceHandler - WARNING - warning:115 - Class weighting not supported for GradientBoostingClassifier
+2025-08-21 21:16:36,381 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:36,382 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6292134831460674, 1: 2.4347826086956523}
+2025-08-21 21:16:36,431 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:36,431 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6292134831460674, 1: 2.4347826086956523}
+2025-08-21 21:16:36,500 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:36,501 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6292134831460674, 1: 2.4347826086956523}
+2025-08-21 21:16:36,805 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:36,806 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6292134831460674, 1: 2.4347826086956523}
+2025-08-21 21:16:36,807 - notebook.ImbalanceHandler - WARNING - warning:115 - Class weighting not supported for GradientBoostingClassifier
+2025-08-21 21:16:37,257 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:37,258 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6292134831460674, 1: 2.4347826086956523}
+2025-08-21 21:16:58,515 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:16:58,516 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6714628297362111, 1: 1.9580419580419581}
+2025-08-21 21:17:06,189 - notebook.ImbalanceHandler - INFO - info:105 - Applying class weighting to model
+2025-08-21 21:17:06,190 - notebook.ImbalanceHandler - INFO - info:105 - Computed class weights: {0: 0.6714628297362111, 1: 1.9580419580419581}
+2025-08-21 21:17:06,190 - notebook.ImbalanceHandler - WARNING - warning:115 - Class weighting not supported for GradientBoostingClassifier

@@ -1,0 +1,227 @@
+2025-08-21 21:27:03,485 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmpl6lmc2to
+2025-08-21 21:27:03,490 - notebook.utils.prediction_service - INFO - info:105 - Saved model test_model vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmpl6lmc2to\test_model_v1.0.pkl
+2025-08-21 21:27:03,491 - notebook.utils.prediction_service - INFO - info:105 - Saved metadata for test_model vv1.0
+2025-08-21 21:27:03,494 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmp_kugb_u9
+2025-08-21 21:27:03,497 - notebook.utils.prediction_service - INFO - info:105 - Saved model test_model vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmp_kugb_u9\test_model_v1.0.pkl
+2025-08-21 21:27:03,500 - notebook.utils.prediction_service - INFO - info:105 - Saved model test_model vv1.1 to C:\Users\gillu\AppData\Local\Temp\tmp_kugb_u9\test_model_v1.1.pkl
+2025-08-21 21:27:03,503 - notebook.utils.prediction_service - INFO - info:105 - Saved model test_model vv2.0 to C:\Users\gillu\AppData\Local\Temp\tmp_kugb_u9\test_model_v2.0.pkl
+2025-08-21 21:27:03,518 - notebook.utils.prediction_service - INFO - info:105 - Loaded model test_model vmodel_v2.0 from C:\Users\gillu\AppData\Local\Temp\tmp_kugb_u9\test_model_v2.0.pkl
+2025-08-21 21:27:03,520 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmpx01tiwto
+2025-08-21 21:27:03,524 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmp36xudh7y
+2025-08-21 21:27:03,527 - notebook.utils.prediction_service - INFO - info:105 - Saved model model_a vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmp36xudh7y\model_a_v1.0.pkl
+2025-08-21 21:27:03,527 - notebook.utils.prediction_service - INFO - info:105 - Saved model model_a vv1.1 to C:\Users\gillu\AppData\Local\Temp\tmp36xudh7y\model_a_v1.1.pkl
+2025-08-21 21:27:03,528 - notebook.utils.prediction_service - INFO - info:105 - Saved model model_b vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmp36xudh7y\model_b_v1.0.pkl
+2025-08-21 21:27:03,797 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmpwdqxm8du
+2025-08-21 21:27:03,801 - notebook.utils.prediction_service - INFO - info:105 - Saved model cached_model vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmpwdqxm8du\cached_model_v1.0.pkl
+2025-08-21 21:27:03,803 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,803 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,804 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,804 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,824 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,824 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,826 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,826 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,828 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,828 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,830 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,830 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,838 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer SAMPLE_001: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:03,839 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,840 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,841 - notebook.utils.prediction_service - INFO - info:105 - Starting batch prediction for 3 customers
+2025-08-21 21:27:03,847 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer BATCH_TEST_000: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:03,854 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer BATCH_TEST_001: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:03,861 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer BATCH_TEST_002: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:03,862 - notebook.utils.prediction_service - INFO - info:105 - Batch prediction completed. 3 results generated
+2025-08-21 21:27:03,863 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,864 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,866 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,867 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,868 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,868 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,869 - notebook.utils.prediction_service - WARNING - warning:115 - Default model nonexistent_model not found. Service will require explicit model loading.
+2025-08-21 21:27:03,869 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: nonexistent_model vlatest
+2025-08-21 21:27:03,871 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,872 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,872 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vlatest
+2025-08-21 21:27:03,873 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vlatest
+2025-08-21 21:27:03,874 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,875 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,876 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,877 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,879 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:03,879 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:03,883 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vlatest
+2025-08-21 21:27:03,883 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vlatest
+2025-08-21 21:27:03,884 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed: Invalid shape
+2025-08-21 21:27:03,887 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vlatest
+2025-08-21 21:27:03,888 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vlatest
+2025-08-21 21:27:03,888 - notebook.utils.prediction_service - INFO - info:105 - Starting batch prediction for 2 customers
+2025-08-21 21:27:03,896 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer GOOD_001: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:03,896 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed: Prediction failed
+2025-08-21 21:27:03,896 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed for customer BAD_002: Prediction failed
+2025-08-21 21:27:23,852 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmpnqnvj67w
+2025-08-21 21:27:23,855 - notebook.utils.prediction_service - INFO - info:105 - Saved model model_a vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmpnqnvj67w\model_a_v1.0.pkl
+2025-08-21 21:27:23,856 - notebook.utils.prediction_service - INFO - info:105 - Saved model model_a vv1.1 to C:\Users\gillu\AppData\Local\Temp\tmpnqnvj67w\model_a_v1.1.pkl
+2025-08-21 21:27:23,856 - notebook.utils.prediction_service - INFO - info:105 - Saved model model_b vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmpnqnvj67w\model_b_v1.0.pkl
+2025-08-21 21:27:23,858 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vlatest
+2025-08-21 21:27:23,858 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vlatest
+2025-08-21 21:27:23,860 - notebook.utils.prediction_service - INFO - info:105 - Starting batch prediction for 2 customers
+2025-08-21 21:27:23,868 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer GOOD_001: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:23,868 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed: Prediction failed
+2025-08-21 21:27:23,870 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed for customer BAD_002: Prediction failed
+2025-08-21 21:27:23,870 - notebook.utils.prediction_service - INFO - info:105 - Batch prediction completed. 2 results generated
+2025-08-21 21:27:29,388 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmp90hlyh1i
+2025-08-21 21:27:29,391 - notebook.utils.prediction_service - INFO - info:105 - Saved model test_model vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmp90hlyh1i\test_model_v1.0.pkl
+2025-08-21 21:27:29,392 - notebook.utils.prediction_service - INFO - info:105 - Saved metadata for test_model vv1.0
+2025-08-21 21:27:29,394 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmpjukqrmzd
+2025-08-21 21:27:29,399 - notebook.utils.prediction_service - INFO - info:105 - Saved model test_model vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmpjukqrmzd\test_model_v1.0.pkl
+2025-08-21 21:27:29,401 - notebook.utils.prediction_service - INFO - info:105 - Saved model test_model vv1.1 to C:\Users\gillu\AppData\Local\Temp\tmpjukqrmzd\test_model_v1.1.pkl
+2025-08-21 21:27:29,404 - notebook.utils.prediction_service - INFO - info:105 - Saved model test_model vv2.0 to C:\Users\gillu\AppData\Local\Temp\tmpjukqrmzd\test_model_v2.0.pkl
+2025-08-21 21:27:29,406 - notebook.utils.prediction_service - INFO - info:105 - Loaded model test_model vmodel_v2.0 from C:\Users\gillu\AppData\Local\Temp\tmpjukqrmzd\test_model_v2.0.pkl
+2025-08-21 21:27:29,408 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmpkndoqrmc
+2025-08-21 21:27:29,411 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmpta4ljd_e
+2025-08-21 21:27:29,415 - notebook.utils.prediction_service - INFO - info:105 - Saved model model_a vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmpta4ljd_e\model_a_v1.0.pkl
+2025-08-21 21:27:29,415 - notebook.utils.prediction_service - INFO - info:105 - Saved model model_a vv1.1 to C:\Users\gillu\AppData\Local\Temp\tmpta4ljd_e\model_a_v1.1.pkl
+2025-08-21 21:27:29,416 - notebook.utils.prediction_service - INFO - info:105 - Saved model model_b vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmpta4ljd_e\model_b_v1.0.pkl
+2025-08-21 21:27:29,418 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: C:\Users\gillu\AppData\Local\Temp\tmpcbc8llrx
+2025-08-21 21:27:29,420 - notebook.utils.prediction_service - INFO - info:105 - Saved model cached_model vv1.0 to C:\Users\gillu\AppData\Local\Temp\tmpcbc8llrx\cached_model_v1.0.pkl
+2025-08-21 21:27:29,422 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,423 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,425 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,425 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,435 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,435 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,437 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,437 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,440 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,440 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,442 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,442 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,450 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer SAMPLE_001: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:29,451 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,452 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,452 - notebook.utils.prediction_service - INFO - info:105 - Starting batch prediction for 3 customers
+2025-08-21 21:27:29,458 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer BATCH_TEST_000: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:29,466 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer BATCH_TEST_001: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:29,473 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer BATCH_TEST_002: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:29,473 - notebook.utils.prediction_service - INFO - info:105 - Batch prediction completed. 3 results generated
+2025-08-21 21:27:29,475 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,475 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,477 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,477 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,478 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,479 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,479 - notebook.utils.prediction_service - WARNING - warning:115 - Default model nonexistent_model not found. Service will require explicit model loading.
+2025-08-21 21:27:29,479 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: nonexistent_model vlatest
+2025-08-21 21:27:29,481 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,482 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,482 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vlatest
+2025-08-21 21:27:29,482 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vlatest
+2025-08-21 21:27:29,484 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,484 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,486 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,486 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,488 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: test_model vv1.0
+2025-08-21 21:27:29,488 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: test_model vv1.0
+2025-08-21 21:27:29,491 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vlatest
+2025-08-21 21:27:29,492 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vlatest
+2025-08-21 21:27:29,492 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed: Invalid shape
+2025-08-21 21:27:29,494 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vlatest
+2025-08-21 21:27:29,495 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vlatest
+2025-08-21 21:27:29,495 - notebook.utils.prediction_service - INFO - info:105 - Starting batch prediction for 2 customers
+2025-08-21 21:27:29,501 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer GOOD_001: probability=0.700, risk_level=medium, confidence=0.400
+2025-08-21 21:27:29,502 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed: Prediction failed
+2025-08-21 21:27:29,502 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed for customer BAD_002: Prediction failed
+2025-08-21 21:27:29,502 - notebook.utils.prediction_service - INFO - info:105 - Batch prediction completed. 2 results generated
+2025-08-21 21:28:36,815 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:36,819 - notebook.utils.prediction_service - INFO - info:105 - Saved model churn_predictor vdemo_v1.0 to models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:36,820 - notebook.utils.prediction_service - INFO - info:105 - Saved metadata for churn_predictor vdemo_v1.0
+2025-08-21 21:28:36,822 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:36,830 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:36,846 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:36,846 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:36,859 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer DEMO_CUSTOMER_001: probability=0.910, risk_level=high, confidence=0.820
+2025-08-21 21:28:36,867 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:36,869 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:36,869 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:36,870 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:36,870 - notebook.utils.prediction_service - INFO - info:105 - Starting batch prediction for 3 customers
+2025-08-21 21:28:36,879 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer HIGH_RISK_001: probability=0.920, risk_level=high, confidence=0.840
+2025-08-21 21:28:36,889 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer MEDIUM_RISK_002: probability=0.130, risk_level=low, confidence=0.740
+2025-08-21 21:28:36,899 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer LOW_RISK_003: probability=0.070, risk_level=low, confidence=0.860
+2025-08-21 21:28:36,899 - notebook.utils.prediction_service - INFO - info:105 - Batch prediction completed. 3 results generated
+2025-08-21 21:28:36,906 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:36,908 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:36,908 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:36,909 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:36,913 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:36,916 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vpredictor_demo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:36,916 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vlatest
+2025-08-21 21:28:36,917 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vlatest
+2025-08-21 21:28:36,924 - notebook.utils.prediction_service - WARNING - warning:115 - No feature names available from model metadata
+2025-08-21 21:28:36,925 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed: X has 31 features, but RandomForestClassifier is expecting 19 features as input.
+2025-08-21 21:28:54,982 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:54,989 - notebook.utils.prediction_service - INFO - info:105 - Saved model churn_predictor vdemo_v1.0 to models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:54,990 - notebook.utils.prediction_service - INFO - info:105 - Saved metadata for churn_predictor vdemo_v1.0
+2025-08-21 21:28:54,991 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:55,001 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:55,006 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:55,006 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:55,019 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer DEMO_CUSTOMER_001: probability=0.910, risk_level=high, confidence=0.820
+2025-08-21 21:28:55,026 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:55,031 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:55,031 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:55,031 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:55,031 - notebook.utils.prediction_service - INFO - info:105 - Starting batch prediction for 3 customers
+2025-08-21 21:28:55,041 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer HIGH_RISK_001: probability=0.920, risk_level=high, confidence=0.840
+2025-08-21 21:28:55,051 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer MEDIUM_RISK_002: probability=0.130, risk_level=low, confidence=0.740
+2025-08-21 21:28:55,061 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer LOW_RISK_003: probability=0.070, risk_level=low, confidence=0.860
+2025-08-21 21:28:55,061 - notebook.utils.prediction_service - INFO - info:105 - Batch prediction completed. 3 results generated
+2025-08-21 21:28:55,068 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:55,070 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:55,071 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:55,071 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:55,075 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:55,078 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vpredictor_demo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:55,078 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vlatest
+2025-08-21 21:28:55,078 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vlatest
+2025-08-21 21:28:55,084 - notebook.utils.prediction_service - WARNING - warning:115 - No feature names available from model metadata
+2025-08-21 21:28:55,085 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed: X has 31 features, but RandomForestClassifier is expecting 19 features as input.
+2025-08-21 21:28:55,087 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-21 21:28:55,089 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-21 21:28:55,090 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:55,090 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-21 21:28:55,099 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer QUICK_DEMO_001: probability=0.120, risk_level=low, confidence=0.760
+2025-08-22 01:36:05,409 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-22 01:36:05,414 - notebook.utils.prediction_service - INFO - info:105 - Saved model churn_predictor vdemo_v1.0 to models\churn_predictor_demo_v1.0.pkl
+2025-08-22 01:36:05,415 - notebook.utils.prediction_service - INFO - info:105 - Saved metadata for churn_predictor vdemo_v1.0
+2025-08-22 01:36:05,417 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-22 01:36:05,426 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-22 01:36:05,432 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-22 01:36:05,432 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-22 01:36:05,457 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer DEMO_CUSTOMER_001: probability=0.910, risk_level=high, confidence=0.820
+2025-08-22 01:36:05,464 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-22 01:36:05,467 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-22 01:36:05,467 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-22 01:36:05,467 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-22 01:36:05,468 - notebook.utils.prediction_service - INFO - info:105 - Starting batch prediction for 3 customers
+2025-08-22 01:36:05,478 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer HIGH_RISK_001: probability=0.920, risk_level=high, confidence=0.840
+2025-08-22 01:36:05,486 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer MEDIUM_RISK_002: probability=0.130, risk_level=low, confidence=0.740
+2025-08-22 01:36:05,495 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer LOW_RISK_003: probability=0.070, risk_level=low, confidence=0.860
+2025-08-22 01:36:05,495 - notebook.utils.prediction_service - INFO - info:105 - Batch prediction completed. 3 results generated
+2025-08-22 01:36:05,501 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-22 01:36:05,504 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-22 01:36:05,504 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-22 01:36:05,504 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-22 01:36:05,509 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-22 01:36:05,510 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vpredictor_demo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-22 01:36:05,511 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vlatest
+2025-08-22 01:36:05,511 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vlatest
+2025-08-22 01:36:05,518 - notebook.utils.prediction_service - WARNING - warning:115 - No feature names available from model metadata
+2025-08-22 01:36:05,518 - notebook.utils.prediction_service - ERROR - error:120 - Prediction failed: X has 31 features, but RandomForestClassifier is expecting 19 features as input.
+2025-08-22 01:36:05,520 - notebook.utils.prediction_service - INFO - info:105 - ModelRegistry initialized with path: models
+2025-08-22 01:36:05,521 - notebook.utils.prediction_service - INFO - info:105 - Loaded model churn_predictor vdemo_v1.0 from models\churn_predictor_demo_v1.0.pkl
+2025-08-22 01:36:05,522 - notebook.utils.prediction_service - INFO - info:105 - Loaded default model: churn_predictor vdemo_v1.0
+2025-08-22 01:36:05,522 - notebook.utils.prediction_service - INFO - info:105 - PredictionService initialized with model: churn_predictor vdemo_v1.0
+2025-08-22 01:36:05,531 - notebook.utils.prediction_service - INFO - info:105 - Prediction completed for customer QUICK_DEMO_001: probability=0.120, risk_level=low, confidence=0.760

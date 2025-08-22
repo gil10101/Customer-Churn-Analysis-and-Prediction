@@ -1,0 +1,312 @@
+2025-08-21 21:28:36,700 - notebook.prediction_service_demo - INFO - info:105 - Starting Prediction Service Demo
+2025-08-21 21:28:36,700 - notebook.prediction_service_demo - INFO - info:105 - ================================================================================
+2025-08-21 21:28:36,700 - notebook.prediction_service_demo - INFO - info:105 - Setting up demo model...
+2025-08-21 21:28:36,700 - notebook.prediction_service_demo - INFO - info:105 - Creating demo model...
+2025-08-21 21:28:36,707 - notebook.prediction_service_demo - INFO - info:105 - Generated 1000 samples with 55.7% churn rate
+2025-08-21 21:28:36,814 - notebook.prediction_service_demo - INFO - info:105 - Model trained - Train accuracy: 1.000, Test accuracy: 0.855
+2025-08-21 21:28:36,820 - notebook.prediction_service_demo - INFO - info:105 - Demo model saved successfully!
+2025-08-21 21:28:36,820 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-21 21:28:36,822 - notebook.prediction_service_demo - INFO - info:105 - SINGLE CUSTOMER PREDICTION DEMO
+2025-08-21 21:28:36,822 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-21 21:28:36,847 - notebook.prediction_service_demo - INFO - info:105 - Predicting churn for customer: DEMO_CUSTOMER_001
+2025-08-21 21:28:36,847 - notebook.prediction_service_demo - INFO - info:105 - Customer profile:
+2025-08-21 21:28:36,847 - notebook.prediction_service_demo - INFO - info:105 -   - Contract: Month-to-month
+2025-08-21 21:28:36,847 - notebook.prediction_service_demo - INFO - info:105 -   - Tenure: 6 months
+2025-08-21 21:28:36,848 - notebook.prediction_service_demo - INFO - info:105 -   - Monthly charges: $95.0
+2025-08-21 21:28:36,848 - notebook.prediction_service_demo - INFO - info:105 -   - Payment method: Electronic check
+2025-08-21 21:28:36,848 - notebook.prediction_service_demo - INFO - info:105 -   - Support interactions: 3
+2025-08-21 21:28:36,859 - notebook.prediction_service_demo - INFO - info:105 - 
+PREDICTION RESULTS:
+2025-08-21 21:28:36,859 - notebook.prediction_service_demo - INFO - info:105 -   - Churn probability: 91.0%
+2025-08-21 21:28:36,860 - notebook.prediction_service_demo - INFO - info:105 -   - Risk level: HIGH
+2025-08-21 21:28:36,860 - notebook.prediction_service_demo - INFO - info:105 -   - Confidence score: 82.0%
+2025-08-21 21:28:36,860 - notebook.prediction_service_demo - INFO - info:105 -   - Estimated CLV: $1,824.00
+2025-08-21 21:28:36,860 - notebook.prediction_service_demo - INFO - info:105 -   - Retention cost-benefit: $1,136.89
+2025-08-21 21:28:36,860 - notebook.prediction_service_demo - INFO - info:105 - 
+KEY RISK FACTORS:
+2025-08-21 21:28:36,862 - notebook.prediction_service_demo - INFO - info:105 -   1. Month-to-month contract (high flexibility risk)
+2025-08-21 21:28:36,862 - notebook.prediction_service_demo - INFO - info:105 -   2. New customer (< 1 year tenure)
+2025-08-21 21:28:36,862 - notebook.prediction_service_demo - INFO - info:105 -   3. Fiber optic service (higher churn rate)
+2025-08-21 21:28:36,862 - notebook.prediction_service_demo - INFO - info:105 -   4. No tech support service
+2025-08-21 21:28:36,863 - notebook.prediction_service_demo - INFO - info:105 -   5. Electronic check payment method
+2025-08-21 21:28:36,863 - notebook.prediction_service_demo - INFO - info:105 -   6. Paperless billing enabled
+2025-08-21 21:28:36,863 - notebook.prediction_service_demo - INFO - info:105 - 
+RECOMMENDATIONS:
+2025-08-21 21:28:36,864 - notebook.prediction_service_demo - INFO - info:105 -   1. Immediate retention intervention recommended
+2025-08-21 21:28:36,864 - notebook.prediction_service_demo - INFO - info:105 -   2. Consider offering personalized discount or upgrade incentive
+2025-08-21 21:28:36,864 - notebook.prediction_service_demo - INFO - info:105 -   3. Schedule proactive customer service outreach within 48 hours
+2025-08-21 21:28:36,864 - notebook.prediction_service_demo - INFO - info:105 -   4. Offer incentive to upgrade to longer-term contract
+2025-08-21 21:28:36,865 - notebook.prediction_service_demo - INFO - info:105 -   5. Review fiber service quality and customer satisfaction
+2025-08-21 21:28:36,865 - notebook.prediction_service_demo - INFO - info:105 -   6. Encourage switch to automatic payment method with discount incentive
+2025-08-21 21:28:36,865 - notebook.prediction_service_demo - INFO - info:105 -   7. Implement new customer retention program
+2025-08-21 21:28:36,865 - notebook.prediction_service_demo - INFO - info:105 -   8. Review pricing competitiveness and consider retention pricing
+2025-08-21 21:28:36,866 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-21 21:28:36,866 - notebook.prediction_service_demo - INFO - info:105 - BATCH PREDICTION DEMO
+2025-08-21 21:28:36,866 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-21 21:28:36,870 - notebook.prediction_service_demo - INFO - info:105 - Making batch predictions for 3 customers...
+2025-08-21 21:28:36,899 - notebook.prediction_service_demo - INFO - info:105 - 
+BATCH PREDICTION RESULTS:
+2025-08-21 21:28:36,899 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-21 21:28:36,900 - notebook.prediction_service_demo - INFO - info:105 - Customer: HIGH_RISK_001
+2025-08-21 21:28:36,900 - notebook.prediction_service_demo - INFO - info:105 -   Churn Probability: 92.0%
+2025-08-21 21:28:36,900 - notebook.prediction_service_demo - INFO - info:105 -   Risk Level: HIGH
+2025-08-21 21:28:36,900 - notebook.prediction_service_demo - INFO - info:105 -   Confidence: 84.0%
+2025-08-21 21:28:36,901 - notebook.prediction_service_demo - INFO - info:105 -   Top Risk Factor: Month-to-month contract (high flexibility risk)
+2025-08-21 21:28:36,901 - notebook.prediction_service_demo - INFO - info:105 -   Top Recommendation: Immediate retention intervention recommended
+2025-08-21 21:28:36,901 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-21 21:28:36,902 - notebook.prediction_service_demo - INFO - info:105 - Customer: MEDIUM_RISK_002
+2025-08-21 21:28:36,902 - notebook.prediction_service_demo - INFO - info:105 -   Churn Probability: 13.0%
+2025-08-21 21:28:36,902 - notebook.prediction_service_demo - INFO - info:105 -   Risk Level: LOW
+2025-08-21 21:28:36,902 - notebook.prediction_service_demo - INFO - info:105 -   Confidence: 74.0%
+2025-08-21 21:28:36,903 - notebook.prediction_service_demo - INFO - info:105 -   Top Risk Factor: Fiber optic service (higher churn rate)
+2025-08-21 21:28:36,903 - notebook.prediction_service_demo - INFO - info:105 -   Top Recommendation: Continue standard customer engagement
+2025-08-21 21:28:36,903 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-21 21:28:36,903 - notebook.prediction_service_demo - INFO - info:105 - Customer: LOW_RISK_003
+2025-08-21 21:28:36,904 - notebook.prediction_service_demo - INFO - info:105 -   Churn Probability: 7.0%
+2025-08-21 21:28:36,904 - notebook.prediction_service_demo - INFO - info:105 -   Risk Level: LOW
+2025-08-21 21:28:36,904 - notebook.prediction_service_demo - INFO - info:105 -   Confidence: 86.0%
+2025-08-21 21:28:36,904 - notebook.prediction_service_demo - INFO - info:105 -   Top Risk Factor: Fiber optic service (higher churn rate)
+2025-08-21 21:28:36,905 - notebook.prediction_service_demo - INFO - info:105 -   Top Recommendation: Continue standard customer engagement
+2025-08-21 21:28:36,905 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-21 21:28:36,905 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-21 21:28:36,906 - notebook.prediction_service_demo - INFO - info:105 - MODEL INFORMATION DEMO
+2025-08-21 21:28:36,906 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-21 21:28:36,909 - notebook.prediction_service_demo - INFO - info:105 - MODEL INFORMATION:
+2025-08-21 21:28:36,909 - notebook.prediction_service_demo - INFO - info:105 -   - Model Name: churn_predictor
+2025-08-21 21:28:36,909 - notebook.prediction_service_demo - INFO - info:105 -   - Model Version: demo_v1.0
+2025-08-21 21:28:36,910 - notebook.prediction_service_demo - INFO - info:105 -   - Model Type: RandomForestClassifier
+2025-08-21 21:28:36,910 - notebook.prediction_service_demo - INFO - info:105 -   - Feature Count: 19
+2025-08-21 21:28:36,910 - notebook.prediction_service_demo - INFO - info:105 -   - Risk Thresholds: {'low': 0.3, 'medium': 0.7, 'high': 1.0}
+2025-08-21 21:28:36,910 - notebook.prediction_service_demo - INFO - info:105 - 
+HEALTH CHECK:
+2025-08-21 21:28:36,910 - notebook.prediction_service_demo - INFO - info:105 -   - Status: HEALTHY
+2025-08-21 21:28:36,910 - notebook.prediction_service_demo - INFO - info:105 -   - Model Loaded: True
+2025-08-21 21:28:36,912 - notebook.prediction_service_demo - INFO - info:105 -   - Feature Count: 19
+2025-08-21 21:28:36,912 - notebook.prediction_service_demo - INFO - info:105 -   - Issues: None
+2025-08-21 21:28:36,912 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-21 21:28:36,913 - notebook.prediction_service_demo - INFO - info:105 - QUICK PREDICTION DEMO
+2025-08-21 21:28:36,913 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-21 21:28:36,913 - notebook.prediction_service_demo - INFO - info:105 - Using quick_prediction() function for customer: QUICK_DEMO_001
+2025-08-21 21:28:36,925 - notebook.prediction_service_demo - ERROR - error:120 - Demo failed with error: X has 31 features, but RandomForestClassifier is expecting 19 features as input.
+2025-08-21 21:28:54,874 - notebook.prediction_service_demo - INFO - info:105 - Starting Prediction Service Demo
+2025-08-21 21:28:54,875 - notebook.prediction_service_demo - INFO - info:105 - ================================================================================
+2025-08-21 21:28:54,875 - notebook.prediction_service_demo - INFO - info:105 - Setting up demo model...
+2025-08-21 21:28:54,875 - notebook.prediction_service_demo - INFO - info:105 - Creating demo model...
+2025-08-21 21:28:54,878 - notebook.prediction_service_demo - INFO - info:105 - Generated 1000 samples with 55.7% churn rate
+2025-08-21 21:28:54,981 - notebook.prediction_service_demo - INFO - info:105 - Model trained - Train accuracy: 1.000, Test accuracy: 0.855
+2025-08-21 21:28:54,990 - notebook.prediction_service_demo - INFO - info:105 - Demo model saved successfully!
+2025-08-21 21:28:54,990 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-21 21:28:54,991 - notebook.prediction_service_demo - INFO - info:105 - SINGLE CUSTOMER PREDICTION DEMO
+2025-08-21 21:28:54,991 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-21 21:28:55,006 - notebook.prediction_service_demo - INFO - info:105 - Predicting churn for customer: DEMO_CUSTOMER_001
+2025-08-21 21:28:55,006 - notebook.prediction_service_demo - INFO - info:105 - Customer profile:
+2025-08-21 21:28:55,008 - notebook.prediction_service_demo - INFO - info:105 -   - Contract: Month-to-month
+2025-08-21 21:28:55,008 - notebook.prediction_service_demo - INFO - info:105 -   - Tenure: 6 months
+2025-08-21 21:28:55,008 - notebook.prediction_service_demo - INFO - info:105 -   - Monthly charges: $95.0
+2025-08-21 21:28:55,009 - notebook.prediction_service_demo - INFO - info:105 -   - Payment method: Electronic check
+2025-08-21 21:28:55,009 - notebook.prediction_service_demo - INFO - info:105 -   - Support interactions: 3
+2025-08-21 21:28:55,020 - notebook.prediction_service_demo - INFO - info:105 - 
+PREDICTION RESULTS:
+2025-08-21 21:28:55,020 - notebook.prediction_service_demo - INFO - info:105 -   - Churn probability: 91.0%
+2025-08-21 21:28:55,020 - notebook.prediction_service_demo - INFO - info:105 -   - Risk level: HIGH
+2025-08-21 21:28:55,020 - notebook.prediction_service_demo - INFO - info:105 -   - Confidence score: 82.0%
+2025-08-21 21:28:55,021 - notebook.prediction_service_demo - INFO - info:105 -   - Estimated CLV: $1,824.00
+2025-08-21 21:28:55,021 - notebook.prediction_service_demo - INFO - info:105 -   - Retention cost-benefit: $1,136.89
+2025-08-21 21:28:55,021 - notebook.prediction_service_demo - INFO - info:105 - 
+KEY RISK FACTORS:
+2025-08-21 21:28:55,021 - notebook.prediction_service_demo - INFO - info:105 -   1. Month-to-month contract (high flexibility risk)
+2025-08-21 21:28:55,021 - notebook.prediction_service_demo - INFO - info:105 -   2. New customer (< 1 year tenure)
+2025-08-21 21:28:55,022 - notebook.prediction_service_demo - INFO - info:105 -   3. Fiber optic service (higher churn rate)
+2025-08-21 21:28:55,022 - notebook.prediction_service_demo - INFO - info:105 -   4. No tech support service
+2025-08-21 21:28:55,022 - notebook.prediction_service_demo - INFO - info:105 -   5. Electronic check payment method
+2025-08-21 21:28:55,022 - notebook.prediction_service_demo - INFO - info:105 -   6. Paperless billing enabled
+2025-08-21 21:28:55,023 - notebook.prediction_service_demo - INFO - info:105 - 
+RECOMMENDATIONS:
+2025-08-21 21:28:55,023 - notebook.prediction_service_demo - INFO - info:105 -   1. Immediate retention intervention recommended
+2025-08-21 21:28:55,023 - notebook.prediction_service_demo - INFO - info:105 -   2. Consider offering personalized discount or upgrade incentive
+2025-08-21 21:28:55,024 - notebook.prediction_service_demo - INFO - info:105 -   3. Schedule proactive customer service outreach within 48 hours
+2025-08-21 21:28:55,024 - notebook.prediction_service_demo - INFO - info:105 -   4. Offer incentive to upgrade to longer-term contract
+2025-08-21 21:28:55,024 - notebook.prediction_service_demo - INFO - info:105 -   5. Review fiber service quality and customer satisfaction
+2025-08-21 21:28:55,025 - notebook.prediction_service_demo - INFO - info:105 -   6. Encourage switch to automatic payment method with discount incentive
+2025-08-21 21:28:55,025 - notebook.prediction_service_demo - INFO - info:105 -   7. Implement new customer retention program
+2025-08-21 21:28:55,025 - notebook.prediction_service_demo - INFO - info:105 -   8. Review pricing competitiveness and consider retention pricing
+2025-08-21 21:28:55,026 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-21 21:28:55,026 - notebook.prediction_service_demo - INFO - info:105 - BATCH PREDICTION DEMO
+2025-08-21 21:28:55,026 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-21 21:28:55,031 - notebook.prediction_service_demo - INFO - info:105 - Making batch predictions for 3 customers...
+2025-08-21 21:28:55,061 - notebook.prediction_service_demo - INFO - info:105 - 
+BATCH PREDICTION RESULTS:
+2025-08-21 21:28:55,061 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-21 21:28:55,062 - notebook.prediction_service_demo - INFO - info:105 - Customer: HIGH_RISK_001
+2025-08-21 21:28:55,062 - notebook.prediction_service_demo - INFO - info:105 -   Churn Probability: 92.0%
+2025-08-21 21:28:55,062 - notebook.prediction_service_demo - INFO - info:105 -   Risk Level: HIGH
+2025-08-21 21:28:55,062 - notebook.prediction_service_demo - INFO - info:105 -   Confidence: 84.0%
+2025-08-21 21:28:55,063 - notebook.prediction_service_demo - INFO - info:105 -   Top Risk Factor: Month-to-month contract (high flexibility risk)
+2025-08-21 21:28:55,063 - notebook.prediction_service_demo - INFO - info:105 -   Top Recommendation: Immediate retention intervention recommended
+2025-08-21 21:28:55,063 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-21 21:28:55,063 - notebook.prediction_service_demo - INFO - info:105 - Customer: MEDIUM_RISK_002
+2025-08-21 21:28:55,064 - notebook.prediction_service_demo - INFO - info:105 -   Churn Probability: 13.0%
+2025-08-21 21:28:55,064 - notebook.prediction_service_demo - INFO - info:105 -   Risk Level: LOW
+2025-08-21 21:28:55,064 - notebook.prediction_service_demo - INFO - info:105 -   Confidence: 74.0%
+2025-08-21 21:28:55,064 - notebook.prediction_service_demo - INFO - info:105 -   Top Risk Factor: Fiber optic service (higher churn rate)
+2025-08-21 21:28:55,065 - notebook.prediction_service_demo - INFO - info:105 -   Top Recommendation: Continue standard customer engagement
+2025-08-21 21:28:55,065 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-21 21:28:55,065 - notebook.prediction_service_demo - INFO - info:105 - Customer: LOW_RISK_003
+2025-08-21 21:28:55,066 - notebook.prediction_service_demo - INFO - info:105 -   Churn Probability: 7.0%
+2025-08-21 21:28:55,066 - notebook.prediction_service_demo - INFO - info:105 -   Risk Level: LOW
+2025-08-21 21:28:55,066 - notebook.prediction_service_demo - INFO - info:105 -   Confidence: 86.0%
+2025-08-21 21:28:55,066 - notebook.prediction_service_demo - INFO - info:105 -   Top Risk Factor: Fiber optic service (higher churn rate)
+2025-08-21 21:28:55,067 - notebook.prediction_service_demo - INFO - info:105 -   Top Recommendation: Continue standard customer engagement
+2025-08-21 21:28:55,067 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-21 21:28:55,067 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-21 21:28:55,067 - notebook.prediction_service_demo - INFO - info:105 - MODEL INFORMATION DEMO
+2025-08-21 21:28:55,068 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-21 21:28:55,071 - notebook.prediction_service_demo - INFO - info:105 - MODEL INFORMATION:
+2025-08-21 21:28:55,072 - notebook.prediction_service_demo - INFO - info:105 -   - Model Name: churn_predictor
+2025-08-21 21:28:55,072 - notebook.prediction_service_demo - INFO - info:105 -   - Model Version: demo_v1.0
+2025-08-21 21:28:55,072 - notebook.prediction_service_demo - INFO - info:105 -   - Model Type: RandomForestClassifier
+2025-08-21 21:28:55,072 - notebook.prediction_service_demo - INFO - info:105 -   - Feature Count: 19
+2025-08-21 21:28:55,073 - notebook.prediction_service_demo - INFO - info:105 -   - Risk Thresholds: {'low': 0.3, 'medium': 0.7, 'high': 1.0}
+2025-08-21 21:28:55,073 - notebook.prediction_service_demo - INFO - info:105 - 
+HEALTH CHECK:
+2025-08-21 21:28:55,073 - notebook.prediction_service_demo - INFO - info:105 -   - Status: HEALTHY
+2025-08-21 21:28:55,073 - notebook.prediction_service_demo - INFO - info:105 -   - Model Loaded: True
+2025-08-21 21:28:55,074 - notebook.prediction_service_demo - INFO - info:105 -   - Feature Count: 19
+2025-08-21 21:28:55,074 - notebook.prediction_service_demo - INFO - info:105 -   - Issues: None
+2025-08-21 21:28:55,074 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-21 21:28:55,074 - notebook.prediction_service_demo - INFO - info:105 - QUICK PREDICTION DEMO
+2025-08-21 21:28:55,075 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-21 21:28:55,075 - notebook.prediction_service_demo - INFO - info:105 - Using quick_prediction() function for customer: QUICK_DEMO_001
+2025-08-21 21:28:55,086 - notebook.prediction_service_demo - WARNING - warning:115 - Quick prediction failed with default version: X has 31 features, but RandomForestClassifier is expecting 19 features as input.
+2025-08-21 21:28:55,086 - notebook.prediction_service_demo - INFO - info:105 - Using direct service call instead...
+2025-08-21 21:28:55,099 - notebook.prediction_service_demo - INFO - info:105 - Quick prediction result:
+2025-08-21 21:28:55,099 - notebook.prediction_service_demo - INFO - info:105 -   - Churn probability: 12.0%
+2025-08-21 21:28:55,100 - notebook.prediction_service_demo - INFO - info:105 -   - Risk level: low
+2025-08-21 21:28:55,100 - notebook.prediction_service_demo - INFO - info:105 -   - Confidence: 76.0%
+2025-08-21 21:28:55,100 - notebook.prediction_service_demo - INFO - info:105 - 
+================================================================================
+2025-08-21 21:28:55,101 - notebook.prediction_service_demo - INFO - info:105 - DEMO COMPLETED SUCCESSFULLY!
+2025-08-21 21:28:55,101 - notebook.prediction_service_demo - INFO - info:105 - ================================================================================
+2025-08-21 21:28:55,101 - notebook.prediction_service_demo - INFO - info:105 - 
+SUMMARY:
+2025-08-21 21:28:55,101 - notebook.prediction_service_demo - INFO - info:105 -   - Single prediction: high risk
+2025-08-21 21:28:55,102 - notebook.prediction_service_demo - INFO - info:105 -   - Batch predictions: 3 customers processed
+2025-08-21 21:28:55,102 - notebook.prediction_service_demo - INFO - info:105 -   - Model health: healthy
+2025-08-21 21:28:55,102 - notebook.prediction_service_demo - INFO - info:105 -   - Quick prediction: low risk
+2025-08-22 01:36:05,250 - notebook.prediction_service_demo - INFO - info:105 - Starting Prediction Service Demo
+2025-08-22 01:36:05,252 - notebook.prediction_service_demo - INFO - info:105 - ================================================================================
+2025-08-22 01:36:05,253 - notebook.prediction_service_demo - INFO - info:105 - Setting up demo model...
+2025-08-22 01:36:05,254 - notebook.prediction_service_demo - INFO - info:105 - Creating demo model...
+2025-08-22 01:36:05,276 - notebook.prediction_service_demo - INFO - info:105 - Generated 1000 samples with 55.7% churn rate
+2025-08-22 01:36:05,399 - notebook.prediction_service_demo - INFO - info:105 - Model trained - Train accuracy: 1.000, Test accuracy: 0.855
+2025-08-22 01:36:05,416 - notebook.prediction_service_demo - INFO - info:105 - Demo model saved successfully!
+2025-08-22 01:36:05,416 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-22 01:36:05,416 - notebook.prediction_service_demo - INFO - info:105 - SINGLE CUSTOMER PREDICTION DEMO
+2025-08-22 01:36:05,416 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-22 01:36:05,432 - notebook.prediction_service_demo - INFO - info:105 - Predicting churn for customer: DEMO_CUSTOMER_001
+2025-08-22 01:36:05,432 - notebook.prediction_service_demo - INFO - info:105 - Customer profile:
+2025-08-22 01:36:05,432 - notebook.prediction_service_demo - INFO - info:105 -   - Contract: Month-to-month
+2025-08-22 01:36:05,433 - notebook.prediction_service_demo - INFO - info:105 -   - Tenure: 6 months
+2025-08-22 01:36:05,433 - notebook.prediction_service_demo - INFO - info:105 -   - Monthly charges: $95.0
+2025-08-22 01:36:05,433 - notebook.prediction_service_demo - INFO - info:105 -   - Payment method: Electronic check
+2025-08-22 01:36:05,433 - notebook.prediction_service_demo - INFO - info:105 -   - Support interactions: 3
+2025-08-22 01:36:05,457 - notebook.prediction_service_demo - INFO - info:105 - 
+PREDICTION RESULTS:
+2025-08-22 01:36:05,458 - notebook.prediction_service_demo - INFO - info:105 -   - Churn probability: 91.0%
+2025-08-22 01:36:05,458 - notebook.prediction_service_demo - INFO - info:105 -   - Risk level: HIGH
+2025-08-22 01:36:05,458 - notebook.prediction_service_demo - INFO - info:105 -   - Confidence score: 82.0%
+2025-08-22 01:36:05,459 - notebook.prediction_service_demo - INFO - info:105 -   - Estimated CLV: $1,824.00
+2025-08-22 01:36:05,459 - notebook.prediction_service_demo - INFO - info:105 -   - Retention cost-benefit: $1,136.89
+2025-08-22 01:36:05,459 - notebook.prediction_service_demo - INFO - info:105 - 
+KEY RISK FACTORS:
+2025-08-22 01:36:05,459 - notebook.prediction_service_demo - INFO - info:105 -   1. Month-to-month contract (high flexibility risk)
+2025-08-22 01:36:05,460 - notebook.prediction_service_demo - INFO - info:105 -   2. New customer (< 1 year tenure)
+2025-08-22 01:36:05,460 - notebook.prediction_service_demo - INFO - info:105 -   3. Fiber optic service (higher churn rate)
+2025-08-22 01:36:05,460 - notebook.prediction_service_demo - INFO - info:105 -   4. No tech support service
+2025-08-22 01:36:05,460 - notebook.prediction_service_demo - INFO - info:105 -   5. Electronic check payment method
+2025-08-22 01:36:05,460 - notebook.prediction_service_demo - INFO - info:105 -   6. Paperless billing enabled
+2025-08-22 01:36:05,460 - notebook.prediction_service_demo - INFO - info:105 - 
+RECOMMENDATIONS:
+2025-08-22 01:36:05,460 - notebook.prediction_service_demo - INFO - info:105 -   1. Immediate retention intervention recommended
+2025-08-22 01:36:05,461 - notebook.prediction_service_demo - INFO - info:105 -   2. Consider offering personalized discount or upgrade incentive
+2025-08-22 01:36:05,461 - notebook.prediction_service_demo - INFO - info:105 -   3. Schedule proactive customer service outreach within 48 hours
+2025-08-22 01:36:05,461 - notebook.prediction_service_demo - INFO - info:105 -   4. Offer incentive to upgrade to longer-term contract
+2025-08-22 01:36:05,462 - notebook.prediction_service_demo - INFO - info:105 -   5. Review fiber service quality and customer satisfaction
+2025-08-22 01:36:05,462 - notebook.prediction_service_demo - INFO - info:105 -   6. Encourage switch to automatic payment method with discount incentive
+2025-08-22 01:36:05,462 - notebook.prediction_service_demo - INFO - info:105 -   7. Implement new customer retention program
+2025-08-22 01:36:05,462 - notebook.prediction_service_demo - INFO - info:105 -   8. Review pricing competitiveness and consider retention pricing
+2025-08-22 01:36:05,463 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-22 01:36:05,463 - notebook.prediction_service_demo - INFO - info:105 - BATCH PREDICTION DEMO
+2025-08-22 01:36:05,464 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-22 01:36:05,467 - notebook.prediction_service_demo - INFO - info:105 - Making batch predictions for 3 customers...
+2025-08-22 01:36:05,495 - notebook.prediction_service_demo - INFO - info:105 - 
+BATCH PREDICTION RESULTS:
+2025-08-22 01:36:05,495 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-22 01:36:05,496 - notebook.prediction_service_demo - INFO - info:105 - Customer: HIGH_RISK_001
+2025-08-22 01:36:05,496 - notebook.prediction_service_demo - INFO - info:105 -   Churn Probability: 92.0%
+2025-08-22 01:36:05,496 - notebook.prediction_service_demo - INFO - info:105 -   Risk Level: HIGH
+2025-08-22 01:36:05,497 - notebook.prediction_service_demo - INFO - info:105 -   Confidence: 84.0%
+2025-08-22 01:36:05,497 - notebook.prediction_service_demo - INFO - info:105 -   Top Risk Factor: Month-to-month contract (high flexibility risk)
+2025-08-22 01:36:05,497 - notebook.prediction_service_demo - INFO - info:105 -   Top Recommendation: Immediate retention intervention recommended
+2025-08-22 01:36:05,497 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-22 01:36:05,498 - notebook.prediction_service_demo - INFO - info:105 - Customer: MEDIUM_RISK_002
+2025-08-22 01:36:05,498 - notebook.prediction_service_demo - INFO - info:105 -   Churn Probability: 13.0%
+2025-08-22 01:36:05,498 - notebook.prediction_service_demo - INFO - info:105 -   Risk Level: LOW
+2025-08-22 01:36:05,498 - notebook.prediction_service_demo - INFO - info:105 -   Confidence: 74.0%
+2025-08-22 01:36:05,499 - notebook.prediction_service_demo - INFO - info:105 -   Top Risk Factor: Fiber optic service (higher churn rate)
+2025-08-22 01:36:05,499 - notebook.prediction_service_demo - INFO - info:105 -   Top Recommendation: Continue standard customer engagement
+2025-08-22 01:36:05,499 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-22 01:36:05,499 - notebook.prediction_service_demo - INFO - info:105 - Customer: LOW_RISK_003
+2025-08-22 01:36:05,499 - notebook.prediction_service_demo - INFO - info:105 -   Churn Probability: 7.0%
+2025-08-22 01:36:05,500 - notebook.prediction_service_demo - INFO - info:105 -   Risk Level: LOW
+2025-08-22 01:36:05,500 - notebook.prediction_service_demo - INFO - info:105 -   Confidence: 86.0%
+2025-08-22 01:36:05,500 - notebook.prediction_service_demo - INFO - info:105 -   Top Risk Factor: Fiber optic service (higher churn rate)
+2025-08-22 01:36:05,500 - notebook.prediction_service_demo - INFO - info:105 -   Top Recommendation: Continue standard customer engagement
+2025-08-22 01:36:05,500 - notebook.prediction_service_demo - INFO - info:105 - --------------------------------------------------------------------------------
+2025-08-22 01:36:05,500 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-22 01:36:05,501 - notebook.prediction_service_demo - INFO - info:105 - MODEL INFORMATION DEMO
+2025-08-22 01:36:05,501 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-22 01:36:05,505 - notebook.prediction_service_demo - INFO - info:105 - MODEL INFORMATION:
+2025-08-22 01:36:05,505 - notebook.prediction_service_demo - INFO - info:105 -   - Model Name: churn_predictor
+2025-08-22 01:36:05,505 - notebook.prediction_service_demo - INFO - info:105 -   - Model Version: demo_v1.0
+2025-08-22 01:36:05,505 - notebook.prediction_service_demo - INFO - info:105 -   - Model Type: RandomForestClassifier
+2025-08-22 01:36:05,506 - notebook.prediction_service_demo - INFO - info:105 -   - Feature Count: 19
+2025-08-22 01:36:05,506 - notebook.prediction_service_demo - INFO - info:105 -   - Risk Thresholds: {'low': 0.3, 'medium': 0.7, 'high': 1.0}
+2025-08-22 01:36:05,506 - notebook.prediction_service_demo - INFO - info:105 - 
+HEALTH CHECK:
+2025-08-22 01:36:05,507 - notebook.prediction_service_demo - INFO - info:105 -   - Status: HEALTHY
+2025-08-22 01:36:05,507 - notebook.prediction_service_demo - INFO - info:105 -   - Model Loaded: True
+2025-08-22 01:36:05,507 - notebook.prediction_service_demo - INFO - info:105 -   - Feature Count: 19
+2025-08-22 01:36:05,507 - notebook.prediction_service_demo - INFO - info:105 -   - Issues: None
+2025-08-22 01:36:05,508 - notebook.prediction_service_demo - INFO - info:105 - 
+============================================================
+2025-08-22 01:36:05,508 - notebook.prediction_service_demo - INFO - info:105 - QUICK PREDICTION DEMO
+2025-08-22 01:36:05,508 - notebook.prediction_service_demo - INFO - info:105 - ============================================================
+2025-08-22 01:36:05,508 - notebook.prediction_service_demo - INFO - info:105 - Using quick_prediction() function for customer: QUICK_DEMO_001
+2025-08-22 01:36:05,519 - notebook.prediction_service_demo - WARNING - warning:115 - Quick prediction failed with default version: X has 31 features, but RandomForestClassifier is expecting 19 features as input.
+2025-08-22 01:36:05,519 - notebook.prediction_service_demo - INFO - info:105 - Using direct service call instead...
+2025-08-22 01:36:05,531 - notebook.prediction_service_demo - INFO - info:105 - Quick prediction result:
+2025-08-22 01:36:05,531 - notebook.prediction_service_demo - INFO - info:105 -   - Churn probability: 12.0%
+2025-08-22 01:36:05,531 - notebook.prediction_service_demo - INFO - info:105 -   - Risk level: low
+2025-08-22 01:36:05,532 - notebook.prediction_service_demo - INFO - info:105 -   - Confidence: 76.0%
+2025-08-22 01:36:05,532 - notebook.prediction_service_demo - INFO - info:105 - 
+================================================================================
+2025-08-22 01:36:05,532 - notebook.prediction_service_demo - INFO - info:105 - DEMO COMPLETED SUCCESSFULLY!
+2025-08-22 01:36:05,532 - notebook.prediction_service_demo - INFO - info:105 - ================================================================================
+2025-08-22 01:36:05,533 - notebook.prediction_service_demo - INFO - info:105 - 
+SUMMARY:
+2025-08-22 01:36:05,533 - notebook.prediction_service_demo - INFO - info:105 -   - Single prediction: high risk
+2025-08-22 01:36:05,534 - notebook.prediction_service_demo - INFO - info:105 -   - Batch predictions: 3 customers processed
+2025-08-22 01:36:05,534 - notebook.prediction_service_demo - INFO - info:105 -   - Model health: healthy
+2025-08-22 01:36:05,534 - notebook.prediction_service_demo - INFO - info:105 -   - Quick prediction: low risk
