@@ -63,6 +63,20 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
 
 ### Running the Analysis
 
+#### Interactive Jupyter Notebooks (Recommended)
+1. Launch Jupyter environment:
+   ```
+   jupyter notebook notebooks/
+   ```
+
+2. Start with the master overview:
+   ```
+   Open: 00_master_analysis_overview.ipynb
+   ```
+
+3. Execute notebooks sequentially (01-08) for complete analysis
+
+#### Script-Based Analysis (Alternative)
 1. To explore the data:
    ```
    cd Analysis/scripts
@@ -128,6 +142,10 @@ The analysis is based on the Telco Customer Churn dataset, which includes inform
 ## Project Organization
 
 The project is organized into folders:
+- **notebooks**: Interactive Jupyter notebooks for comprehensive analysis (NEW)
+  - Complete end-to-end analysis workflow with professional documentation
+  - 9 specialized notebooks covering EDA, modeling, and business insights
+  - Modern data science implementations with advanced visualization
 - **data**: Contains the customer dataset
 - **Analysis**: Scripts and visualizations for exploring the data
   - **results/segmentation_results**: Customer segment profiles and clustering metrics
@@ -142,6 +160,18 @@ The project is organized into folders:
 
 ```
 Customer-Churn-Analysis-and-Prediction/
+│
+├── notebooks/                       # Interactive Jupyter notebooks (NEW)
+│   ├── 00_master_analysis_overview.ipynb     # Central navigation and project controller
+│   ├── 01_exploratory_data_analysis.ipynb   # Comprehensive EDA with advanced statistics
+│   ├── 02_customer_segmentation.ipynb       # Multi-algorithm clustering analysis
+│   ├── 03_churn_prediction_modeling.ipynb   # Advanced ML model implementations
+│   ├── 04_survival_analysis.ipynb           # Time-to-event modeling and retention
+│   ├── 05_ab_testing_framework.ipynb        # Statistical experimentation framework
+│   ├── 06_cost_sensitive_modeling.ipynb     # Business-optimized prediction models
+│   ├── 07_model_comparison_evaluation.ipynb # Comprehensive model benchmarking
+│   ├── 08_business_insights_recommendations.ipynb # Strategic synthesis and recommendations
+│   └── README.md                            # Detailed notebook documentation
 │
 ├── data/                            # Data directory
 │   └── WA_Fn-UseC_-Telco-Customer-Churn.csv  # Telco customer dataset with demographics, services, and churn information
