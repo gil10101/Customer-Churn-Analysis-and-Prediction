@@ -1,39 +1,201 @@
 version: '3.8'
 
 services:
+  # Main API service
   churn-prediction-api:
     build:
       context: ..
       dockerfile: api/Dockerfile
+      target: production
+      args:
+        BUILD_DATE: ${BUILD_DATE:-$(date -u +'%Y-%m-%dT%H:%M:%SZ')}
+        VERSION: ${VERSION:-latest}
+        VCS_REF: ${VCS_REF:-$(git rev-parse --short HEAD)}
+    container_name: churn-prediction-api
     ports:
-      - "8000:8000"
+      - "${API_PORT:-8000}:8000"
     volumes:
       - ../models:/app/models:ro  # Mount models directory as read-only
       - ../logs:/app/logs         # Mount logs directory for writing
+      - ../data:/app/data:ro      # Mount data directory as read-only
+      - api_cache:/app/cache      # Named volume for cache
     environment:
       - PYTHONPATH=/app
-      - LOG_LEVEL=info
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - WORKERS=${WORKERS:-1}
+      - MAX_WORKERS=${MAX_WORKERS:-4}
+      - TIMEOUT=${TIMEOUT:-30}
+      - KEEP_ALIVE=${KEEP_ALIVE:-2}
+      - ACCESS_LOG=${ACCESS_LOG:-true}
+      - MODEL_PATH=/app/models
+      - LOG_PATH=/app/logs
+      - CACHE_PATH=/app/cache
     healthcheck:
-      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/model/health')"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/model/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s
+      start_period: 60s
     restart: unless-stopped
-    
-  # Optional: Add a reverse proxy for production
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    networks:
+      - churn-prediction-network
+    depends_on:
+      - redis
+    profiles:
+      - api
+      - full
+
+  # Redis for caching and session storage
+  redis:
+    image: redis:7-alpine
+    container_name: churn-prediction-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: redis-server /usr/local/etc/redis/redis.conf
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+    networks:
+      - churn-prediction-network
+    profiles:
+      - cache
+      - full
+
+  # Nginx reverse proxy for production
   nginx:
     image: nginx:alpine
+    container_name: churn-prediction-nginx
     ports:
-      - "80:80"
+      - "${NGINX_HTTP_PORT:-80}:80"
+      - "${NGINX_HTTPS_PORT:-443}:443"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
     depends_on:
-      - churn-prediction-api
+      churn-prediction-api:
+        condition: service_healthy
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 128M
+        reservations:
+          cpus: '0.1'
+          memory: 32M
+    networks:
+      - churn-prediction-network
     profiles:
       - production
+      - full
 
+  # Monitoring with Prometheus (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: churn-prediction-prometheus
+    ports:
+      - "${PROMETHEUS_PORT:-9090}:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - churn-prediction-network
+    profiles:
+      - monitoring
+      - full
+
+  # Grafana for visualization (optional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: churn-prediction-grafana
+    ports:
+      - "${GRAFANA_PORT:-3000}:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
+    networks:
+      - churn-prediction-network
+    profiles:
+      - monitoring
+      - full
+
+  # Development service with hot reload
+  churn-prediction-dev:
+    build:
+      context: ..
+      dockerfile: api/Dockerfile
+      target: production
+    container_name: churn-prediction-dev
+    ports:
+      - "${DEV_PORT:-8001}:8000"
+    volumes:
+      - ..:/app  # Mount entire project for development
+      - /app/.venv  # Exclude virtual environment
+      - /app/__pycache__  # Exclude cache
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=debug
+      - RELOAD=true
+    command: ["python", "-m", "uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    networks:
+      - churn-prediction-network
+    profiles:
+      - development
+
+# Named volumes for persistent data
+volumes:
+  api_cache:
+    driver: local
+  redis_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+  nginx_logs:
+    driver: local
+
+# Networks
 networks:
-  default:
-    name: churn-prediction-network
+  churn-prediction-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
