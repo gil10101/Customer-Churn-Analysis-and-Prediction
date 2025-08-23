@@ -1,0 +1,131 @@
+# Prometheus alerting rules for Churn Prediction API
+
+groups:
+  - name: churn_prediction_api
+    rules:
+      # API Health Alerts
+      - alert: APIDown
+        expr: up{job="churn-prediction-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Churn Prediction API is down"
+          description: "The Churn Prediction API has been down for more than 1 minute."
+
+      - alert: APIHighErrorRate
+        expr: rate(http_requests_total{job="churn-prediction-api",status=~"5.."}[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate on Churn Prediction API"
+          description: "Error rate is {{ $value }} errors per second over the last 5 minutes."
+
+      - alert: APIHighLatency
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job="churn-prediction-api"}[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High latency on Churn Prediction API"
+          description: "95th percentile latency is {{ $value }}s over the last 5 minutes."
+
+      # Model Performance Alerts
+      - alert: ModelPredictionFailure
+        expr: rate(prediction_errors_total[5m]) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High model prediction failure rate"
+          description: "Model prediction failure rate is {{ $value }} per second."
+
+      - alert: ModelNotLoaded
+        expr: model_loaded{job="churn-prediction-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Model not loaded"
+          description: "The prediction model is not loaded in the API."
+
+      # Resource Usage Alerts
+      - alert: HighMemoryUsage
+        expr: (container_memory_usage_bytes{name="churn-prediction-api"} / container_spec_memory_limit_bytes{name="churn-prediction-api"}) > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage is {{ $value | humanizePercentage }} of the limit."
+
+      - alert: HighCPUUsage
+        expr: rate(container_cpu_usage_seconds_total{name="churn-prediction-api"}[5m]) > 0.8
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage is {{ $value | humanizePercentage }}."
+
+  - name: infrastructure
+    rules:
+      # Redis Alerts
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Redis is down"
+          description: "Redis has been down for more than 1 minute."
+
+      - alert: RedisHighMemoryUsage
+        expr: redis_memory_used_bytes / redis_memory_max_bytes > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Redis high memory usage"
+          description: "Redis memory usage is {{ $value | humanizePercentage }}."
+
+      # Nginx Alerts
+      - alert: NginxDown
+        expr: up{job="nginx"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Nginx is down"
+          description: "Nginx has been down for more than 1 minute."
+
+      - alert: NginxHighErrorRate
+        expr: rate(nginx_http_requests_total{status=~"5.."}[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate on Nginx"
+          description: "Nginx error rate is {{ $value }} errors per second."
+
+  - name: system
+    rules:
+      # System Resource Alerts
+      - alert: HighDiskUsage
+        expr: (node_filesystem_size_bytes - node_filesystem_free_bytes) / node_filesystem_size_bytes > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High disk usage"
+          description: "Disk usage is {{ $value | humanizePercentage }} on {{ $labels.device }}."
+
+      - alert: SystemLoadHigh
+        expr: node_load1 > 2
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High system load"
+          description: "System load is {{ $value }}."
