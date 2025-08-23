@@ -7,3 +7,5 @@ data/*
 # utils
 
 .kiro
+
+.env*
