@@ -16,10 +16,10 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.decomposition import PCA
 from sklearn.metrics import silhouette_score
 import joblib
-import os
 
 # Disable UMAP due to TensorFlow compatibility issues
 # UMAP has dependency conflicts with newer TensorFlow versions
+# If UMAP is needed, uncomment: from umap import UMAP
 UMAP_AVAILABLE = False
 print("Note: UMAP disabled due to TensorFlow compatibility issues.")
 print("Using PCA for dimensionality reduction visualization instead.")

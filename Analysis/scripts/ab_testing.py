@@ -15,7 +15,6 @@ from scipy import stats
 import statsmodels.api as sm
 from statsmodels.stats.power import TTestIndPower
 from statsmodels.stats.proportion import proportions_ztest, proportion_confint
-import os
 import random
 import warnings
 warnings.filterwarnings('ignore')

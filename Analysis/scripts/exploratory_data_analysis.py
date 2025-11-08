@@ -14,7 +14,6 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier
-import os
 import warnings
 warnings.filterwarnings('ignore')
 

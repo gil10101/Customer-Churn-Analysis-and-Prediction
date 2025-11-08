@@ -4,7 +4,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.colors import ListedColormap
-from sklearn.manifold import TSNE
 from sklearn.decomposition import PCA
 import sys
 
