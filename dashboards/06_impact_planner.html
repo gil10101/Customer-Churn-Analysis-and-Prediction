@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%233a6fa5'/></svg>">
+<title>Impact planner — Customer Churn Analysis</title>
+<style>
+:root{color-scheme:light}
+*{margin:0;box-sizing:border-box}
+body{background:#f4f2ee;color:#2b2a28;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;padding:26px 30px 48px}
+.wrap{max-width:1280px;margin:0 auto}
+.masthead{display:flex;align-items:baseline;justify-content:space-between;
+  flex-wrap:wrap;gap:10px;margin-bottom:6px}
+.masthead h1{font-size:21px;font-weight:650;letter-spacing:-0.2px}
+.masthead .src{font-size:12px;color:#8a877f}
+nav{display:flex;gap:4px;flex-wrap:wrap;margin:14px 0 22px;
+  border-bottom:1px solid #e7e5df;padding-bottom:12px}
+nav a{font-size:12.5px;color:#55534e;text-decoration:none;padding:6px 12px;
+  border-radius:999px}
+nav a:hover{background:#ecebe5}
+nav a.on{background:#2e5a80;color:#fff}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:14px;margin-bottom:22px}
+.kpi{background:#fafaf9;border:1px solid rgba(43,42,40,.08);
+  border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:3px}
+.klabel{font-size:11.5px;color:#8a877f}
+.kvalue{font-size:27px;font-weight:650;letter-spacing:-0.3px}
+.note{font-size:11px;color:#55534e}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.card{background:#fafaf9;border:1px solid rgba(43,42,40,.08);
+  border-radius:12px;padding:18px 20px 14px;overflow:hidden}
+.card header{margin-bottom:12px}
+.card h2{font-size:14px;font-weight:650}
+.card header p{font-size:12px;color:#8a877f;margin-top:2px}
+.s12{grid-column:span 12}.s8{grid-column:span 8}.s7{grid-column:span 7}
+.s6{grid-column:span 6}.s5{grid-column:span 5}.s4{grid-column:span 4}
+@media(max-width:960px){.card{grid-column:span 12}}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#55534e;
+  margin:2px 0 10px}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:3px;display:inline-block}
+.tbl{margin-top:8px;border-top:1px solid #e7e5df;padding-top:8px}
+.tbl summary{font-size:11.5px;color:#8a877f;cursor:pointer}
+.tbl table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12px}
+.tbl th{text-align:left;color:#8a877f;font-weight:500;padding:4px 8px;
+  border-bottom:1px solid #e7e5df}
+.tbl td{padding:4px 8px;border-bottom:1px solid #e7e5df;color:#55534e;
+  font-variant-numeric:tabular-nums}
+.foot{margin-top:26px;font-size:11.5px;color:#8a877f;line-height:1.6}
+#tip{position:fixed;pointer-events:none;background:#2b2a28;color:#fff;
+  font-size:12px;padding:6px 10px;border-radius:7px;opacity:0;
+  transition:opacity .08s;z-index:10;max-width:260px}
+svg [data-tip]{cursor:default}
+svg [data-tip]:hover{opacity:.85}
+</style></head><body><div class="wrap">
+<div class="masthead"><h1>Impact planner</h1>
+<span class="src">Telco Customer Churn · 7,043 customers · regenerated from the analysis pipeline</span></div>
+<nav><a href="01_executive_overview.html" class="">Overview</a><a href="02_customer_flow_sankey.html" class="">Customer flow</a><a href="03_segments.html" class="">Segments</a><a href="04_retention_survival.html" class="">Retention</a><a href="05_model_performance.html" class="">Models</a><a href="06_impact_planner.html" class="on">Impact</a></nav>
+<div class="kpis"><div class="kpi"><span class="klabel">Monthly revenue lost to churn</span><span class="kvalue">$139K</span><span class="note">addressable base</span></div><div class="kpi"><span class="klabel">Projected customers saved / yr</span><span class="kvalue">595</span><span class="note">positive-ROI strategies, model-targeted</span></div><div class="kpi"><span class="klabel">Projected revenue protected</span><span class="kvalue">$49K/mo</span><span class="note">$591K over 12 mo</span></div><div class="kpi"><span class="klabel">Program cost</span><span class="kvalue">$167K</span><span class="note">one-time, top-30% risk targeting</span></div><div class="kpi"><span class="klabel">Net 12-month impact</span><span class="kvalue">$423K</span><span class="note">253% ROI</span></div></div>
+<div class="grid"><section class="card s12"><header><h2>Net 12-month impact — model-targeted vs blanket outreach</h2><p>Model targeting contacts the top-30% risk scores (67% of churners reached at a third of the cost); blanket contacts the whole pool</p></header><div class="legend"><span class="lg"><span class="sw" style="background:#3a6fa5"></span>Model-targeted</span><span class="lg"><span class="sw" style="background:#b5b1a9"></span>Blanket</span></div><svg viewBox="0 0 1180 348" width="100%" role="img" style="display:block;font-family:inherit"><line x1="470.8" y1="18" x2="470.8" y2="322" stroke="#c9c6bd" stroke-width="1.3"/><text x="310.0" y="47.0" font-size="12" fill="#55534e" text-anchor="end" font-weight="400" >Free tech support</text><path d="M470.8,24.0 h503.5 q4,0 4,4 v8.0 q0,4 -4,4 h-503.5 z" fill="#3a6fa5" data-tip="Free tech support · model-targeted · contact 929 · save 249 customers · net $216K · ROI 466%"/><text x="986.3" y="36.0" font-size="11.5" fill="#2b2a28" text-anchor="start" font-weight="600" >$216K</text><path d="M470.8,46.0 h555.2 q4,0 4,4 v8.0 q0,4 -4,4 h-555.2 z" fill="#b5b1a9" data-tip="Free tech support · blanket · contact 3,096 · save 372 customers · net $239K · ROI 154%"/><text x="1038.0" y="58.0" font-size="11.5" fill="#2b2a28" text-anchor="start" font-weight="600" >$239K</text><text x="310.0" y="111.0" font-size="12" fill="#55534e" text-anchor="end" font-weight="400" >Contract incentive</text><path d="M470.8,88.0 h264.5 q4,0 4,4 v8.0 q0,4 -4,4 h-264.5 z" fill="#3a6fa5" data-tip="Contract incentive · model-targeted · contact 1,162 · save 224 customers · net $115K · ROI 141%"/><text x="747.3" y="100.0" font-size="11.5" fill="#2b2a28" text-anchor="start" font-weight="600" >$115K</text><path d="M470.8,110.0 h47.0 q4,0 4,4 v8.0 q0,4 -4,4 h-47.0 z" fill="#b5b1a9" data-tip="Contract incentive · blanket · contact 3,875 · save 334 customers · net $22K · ROI 8%"/><text x="529.9" y="122.0" font-size="11.5" fill="#2b2a28" text-anchor="start" font-weight="600" >$22K</text><text x="310.0" y="175.0" font-size="12" fill="#55534e" text-anchor="end" font-weight="400" >Service upgrade</text><path d="M470.8,152.0 h161.2 q4,0 4,4 v8.0 q0,4 -4,4 h-161.2 z" fill="#3a6fa5" data-tip="Service upgrade · model-targeted · contact 370 · save 87 customers · net $70K · ROI 318%"/><text x="644.1" y="164.0" font-size="11.5" fill="#2b2a28" text-anchor="start" font-weight="600" >$70K</text><path d="M470.8,174.0 h147.6 q4,0 4,4 v8.0 q0,4 -4,4 h-147.6 z" fill="#b5b1a9" data-tip="Service upgrade · blanket · contact 1,233 · save 130 customers · net $65K · ROI 87%"/><text x="630.5" y="186.0" font-size="11.5" fill="#2b2a28" text-anchor="start" font-weight="600" >$65K</text><text x="310.0" y="239.0" font-size="12" fill="#55534e" text-anchor="end" font-weight="400" >Loyalty program</text><path d="M470.8,216.0 h47.1 q4,0 4,4 v8.0 q0,4 -4,4 h-47.1 z" fill="#3a6fa5" data-tip="Loyalty program · model-targeted · contact 691 · save 35 customers · net $22K · ROI 126%"/><text x="529.9" y="228.0" font-size="11.5" fill="#2b2a28" text-anchor="start" font-weight="600" >$22K</text><path d="M470.8,238.0 h1.0 q0.996319987775661,0 0.996319987775661,0.996319987775661 v14.0 q0,0.996319987775661 -0.996319987775661,0.996319987775661 h-1.0 z" fill="#b5b1a9" data-tip="Loyalty program · blanket · contact 2,303 · save 53 customers · net $0.9K · ROI 1%"/><text x="480.8" y="250.0" font-size="11.5" fill="#2b2a28" text-anchor="start" font-weight="600" >$0.9K</text><text x="310.0" y="303.0" font-size="12" fill="#55534e" text-anchor="end" font-weight="400" >Discount offer</text><rect x="448.5" y="280" width="22.4" height="16" rx="4" fill="#3a6fa5" data-tip="Discount offer · model-targeted · contact 606 · save 52 customers · net −$9.5K · ROI -35%"/><text x="478.8" y="292.0" font-size="11.5" fill="#2b2a28" text-anchor="start" font-weight="600" >−$9.5K</text><rect x="320.0" y="302" width="150.8" height="16" rx="4" fill="#b5b1a9" data-tip="Discount offer · blanket · contact 2,019 · save 77 customers · net −$64K · ROI -71%"/><text x="478.8" y="314.0" font-size="11.5" fill="#2b2a28" text-anchor="start" font-weight="600" >−$64K</text><text x="470.8" y="340.0" font-size="11" fill="#8a877f" text-anchor="middle" font-weight="400" >$0</text><text x="1030.0" y="340.0" font-size="11" fill="#8a877f" text-anchor="end" font-weight="400" >net 12-month impact →</text></svg><details class="tbl"><summary>View data</summary><table><thead><tr><th>Strategy</th><th>Mode</th><th>Contacted</th><th>Customers saved</th><th>Revenue saved /mo</th><th>Cost</th><th>Net (12 mo)</th><th>ROI</th></tr></thead><tbody><tr><td>Contract incentive</td><td>blanket</td><td>3,875</td><td>334</td><td>$24K</td><td>$271K</td><td>$22K</td><td>8%</td></tr><tr><td>Contract incentive</td><td>model-targeted</td><td>1,162</td><td>224</td><td>$16K</td><td>$81K</td><td>$115K</td><td>141%</td></tr><tr><td>Discount offer</td><td>blanket</td><td>2,019</td><td>77</td><td>$2.2K</td><td>$91K</td><td>−$64K</td><td>-71%</td></tr><tr><td>Discount offer</td><td>model-targeted</td><td>606</td><td>52</td><td>$1.5K</td><td>$27K</td><td>−$9.5K</td><td>-35%</td></tr><tr><td>Loyalty program</td><td>blanket</td><td>2,303</td><td>53</td><td>$4.9K</td><td>$58K</td><td>$0.9K</td><td>1%</td></tr><tr><td>Loyalty program</td><td>model-targeted</td><td>691</td><td>35</td><td>$3.3K</td><td>$17K</td><td>$22K</td><td>126%</td></tr><tr><td>Free tech support</td><td>blanket</td><td>3,096</td><td>372</td><td>$33K</td><td>$155K</td><td>$239K</td><td>154%</td></tr><tr><td>Free tech support</td><td>model-targeted</td><td>929</td><td>249</td><td>$22K</td><td>$46K</td><td>$216K</td><td>466%</td></tr><tr><td>Service upgrade</td><td>blanket</td><td>1,233</td><td>130</td><td>$12K</td><td>$74K</td><td>$65K</td><td>87%</td></tr><tr><td>Service upgrade</td><td>model-targeted</td><td>370</td><td>87</td><td>$7.7K</td><td>$22K</td><td>$70K</td><td>318%</td></tr></tbody></table></details></section><section class="card s12"><header><h2>Projected monthly revenue protected by strategy</h2><p>Expected case uses the full simulated lift; conservative case assumes half the lift survives in production</p></header><svg viewBox="0 0 1180 190" width="100%" role="img" style="display:block;font-family:inherit"><line x1="200.0" y1="8" x2="200.0" y2="168" stroke="#e7e5df" stroke-width="1"/><text x="200.0" y="182.0" font-size="11" fill="#8a877f" text-anchor="middle" font-weight="400" style="font-variant-numeric:tabular-nums">$0K</text><line x1="494.7" y1="8" x2="494.7" y2="168" stroke="#e7e5df" stroke-width="1"/><text x="494.7" y="182.0" font-size="11" fill="#8a877f" text-anchor="middle" font-weight="400" style="font-variant-numeric:tabular-nums">$10K</text><line x1="789.3" y1="8" x2="789.3" y2="168" stroke="#e7e5df" stroke-width="1"/><text x="789.3" y="182.0" font-size="11" fill="#8a877f" text-anchor="middle" font-weight="400" style="font-variant-numeric:tabular-nums">$20K</text><line x1="1084.0" y1="8" x2="1084.0" y2="168" stroke="#e7e5df" stroke-width="1"/><text x="1084.0" y="182.0" font-size="11" fill="#8a877f" text-anchor="middle" font-weight="400" style="font-variant-numeric:tabular-nums">$30K</text><text x="190.0" y="22.0" font-size="12" fill="#55534e" text-anchor="end" font-weight="400" >Free tech support</text><path d="M200.0,8.0 h641.6 q4,0 4,4 v12.0 q0,4 -4,4 h-641.6 z" fill="#3a6fa5" data-tip="Free tech support · expected $22K/mo · conservative $11K/mo"/><text x="853.6" y="22.0" font-size="12" fill="#2b2a28" text-anchor="start" font-weight="600" >$22K/mo expected · $11K/mo conservative</text><text x="190.0" y="56.0" font-size="12" fill="#55534e" text-anchor="end" font-weight="400" >Contract incentive</text><path d="M200.0,42.0 h477.0 q4,0 4,4 v12.0 q0,4 -4,4 h-477.0 z" fill="#3a6fa5" data-tip="Contract incentive · expected $16K/mo · conservative $8.2K/mo"/><text x="689.0" y="56.0" font-size="12" fill="#2b2a28" text-anchor="start" font-weight="600" >$16K/mo expected · $8.2K/mo conservative</text><text x="190.0" y="90.0" font-size="12" fill="#55534e" text-anchor="end" font-weight="400" >Service upgrade</text><path d="M200.0,76.0 h223.6 q4,0 4,4 v12.0 q0,4 -4,4 h-223.6 z" fill="#3a6fa5" data-tip="Service upgrade · expected $7.7K/mo · conservative $3.9K/mo"/><text x="435.6" y="90.0" font-size="12" fill="#2b2a28" text-anchor="start" font-weight="600" >$7.7K/mo expected · $3.9K/mo conservative</text><text x="190.0" y="124.0" font-size="12" fill="#55534e" text-anchor="end" font-weight="400" >Loyalty program</text><path d="M200.0,110.0 h91.9 q4,0 4,4 v12.0 q0,4 -4,4 h-91.9 z" fill="#3a6fa5" data-tip="Loyalty program · expected $3.3K/mo · conservative $1.6K/mo"/><text x="303.9" y="124.0" font-size="12" fill="#2b2a28" text-anchor="start" font-weight="600" >$3.3K/mo expected · $1.6K/mo conservative</text><text x="190.0" y="158.0" font-size="12" fill="#55534e" text-anchor="end" font-weight="400" >Discount offer</text><path d="M200.0,144.0 h39.5 q4,0 4,4 v12.0 q0,4 -4,4 h-39.5 z" fill="#b5b1a9" data-tip="Discount offer · expected $1.5K/mo · conservative $0.7K/mo"/><text x="251.5" y="158.0" font-size="12" fill="#2b2a28" text-anchor="start" font-weight="600" >$1.5K/mo expected · $0.7K/mo conservative</text></svg></section></div>
+<p class="foot">Projections combine real cohort sizes and churner revenue with simulated A/B lift rates and final-model targeting capture. Save rate = (treatment − baseline retention) / (1 − baseline). 12-month revenue horizon, one-time program cost. </p>
+</div><script>
+const tip=document.createElement('div');tip.id='tip';document.body.appendChild(tip);
+document.addEventListener('mousemove',e=>{
+  const t=e.target.closest('[data-tip]');
+  if(t){tip.textContent=t.dataset.tip;tip.style.opacity=1;
+    tip.style.left=Math.min(e.clientX+14,innerWidth-280)+'px';
+    tip.style.top=(e.clientY+16)+'px';}
+  else tip.style.opacity=0;});
+</script></body></html>
