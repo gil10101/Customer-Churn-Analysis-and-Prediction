@@ -1,0 +1,59 @@
+{
+  "model": "StackingClassifier(LGBM+XGB+GB+RF+LR -> LR)",
+  "trained": "2026-07-29",
+  "seed": 42,
+  "split": "80/20 stratified holdout",
+  "features": "one-hot + engineered (see tools/portfolio)",
+  "holdout": {
+    "test_accuracy": 0.8041163946061036,
+    "precision": 0.6713286713286714,
+    "recall": 0.5133689839572193,
+    "f1": 0.5818181818181818,
+    "roc_auc": 0.8485029321346457
+  },
+  "holdout_at_tuned_threshold": {
+    "test_accuracy": 0.8105039034776437,
+    "precision": 0.668769716088328,
+    "recall": 0.5668449197860963,
+    "f1": 0.613603473227207,
+    "roc_auc": 0.8485029321346457,
+    "threshold": 0.46499999999999997
+  },
+  "lift": {
+    "top_10": {
+      "precision": 0.75,
+      "lift": 2.8255347593582885,
+      "capture": 0.2807486631016043
+    },
+    "top_20": {
+      "precision": 0.6761565836298933,
+      "lift": 2.5473385730869507,
+      "capture": 0.5080213903743316
+    },
+    "top_30": {
+      "precision": 0.5924170616113744,
+      "lift": 2.231859999493119,
+      "capture": 0.6684491978609626
+    }
+  },
+  "lgbm_params": {
+    "n_estimators": 784,
+    "learning_rate": 0.016094480788507892,
+    "num_leaves": 21,
+    "max_depth": 2,
+    "min_child_samples": 79,
+    "subsample": 0.7207687562739886,
+    "colsample_bytree": 0.7277428159458408,
+    "reg_lambda": 0.7419196137963775
+  },
+  "xgb_params": {
+    "n_estimators": 567,
+    "learning_rate": 0.016977228081868394,
+    "max_depth": 2,
+    "min_child_weight": 7,
+    "subsample": 0.7060576642200672,
+    "colsample_bytree": 0.5909831531383025,
+    "reg_lambda": 1.609074639358549,
+    "gamma": 2.891195563234228
+  }
+}

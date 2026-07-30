@@ -1,70 +1,45 @@
-# Core Libraries
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-scipy
-statsmodels
+# Core analysis (pinned to the versions the results were generated with)
+pandas==2.3.3
+numpy==2.5.1
+scipy==1.18.0
+scikit-learn==1.9.0
+statsmodels>=0.14
 
-# Machine Learning & Deep Learning
-torch
-torchvision
-xgboost
-lightgbm
-joblib
+# Gradient boosting / tuning
+xgboost==3.3.0
+lightgbm==4.7.0
+catboost==1.2.10
+optuna==4.9.0
 
-# Analytics
-lifelines
-umap-learn
-shap
-missingno
+# Survival analysis
+lifelines==0.30.3
+
+# Imbalanced-data utilities
+imbalanced-learn>=0.12
 
 # Visualization
-plotly
-plotly-express
+matplotlib==3.11.1
+seaborn==0.13.2
+plotly>=5.20
+pillow==12.3.0
 
-# Statistical Analysis & Testing
-pymc
-arviz
+# Deep learning (Prediction/scripts/churn_prediction_model.py)
+torch>=2.2
 
-# Cost-Sensitive Learning
-imbalanced-learn
-costcla
+# Model persistence
+joblib==1.5.3
 
-# Hyperparameter Optimization
-optuna
+# API service
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+python-dotenv>=1.0
+structlog>=24.1
+psutil>=5.9
 
-# Model Interpretation
-lime
-
-# Clustering Visualization
-yellowbrick
-
-# Financial Analysis
-numpy-financial
-
-# Jupyter Notebook Support
+# Notebooks
 jupyter
 ipywidgets
-notebook
 
-# Development & Testing
-pytest
-black
-flake8
-mypy
-
-# Type Hints & Data Classes Support
-typing-extensions
-dataclasses-json
-
-# API Framework
-fastapi
-uvicorn[standard]
-python-multipart
-
-# Logging & Configuration
-pydantic
-python-dotenv
-structlog
+# Development & testing
+pytest>=8.0
