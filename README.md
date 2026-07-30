@@ -1,314 +1,172 @@
 # Customer Churn Analysis and Prediction
 
-## Project Overview
+End-to-end churn analysis of 7,043 telecom customer records (IBM Telco Customer Churn dataset): exploratory analysis, customer segmentation, survival modeling, a 14-classifier benchmark topped by a stacked ensemble (81.1% holdout accuracy, 0.849 ROC AUC, 2.8× top-decile lift), an A/B testing framework with projected retention impact, and a FastAPI prediction service.
 
-This project analyzes customer churn for a telecommunications company. Customer churn happens when customers stop using a company's services. We use the Telco Customer Churn dataset to understand why customers leave and identify patterns that can help reduce customer loss.
+## Dataset
 
-## Dataset Description
+7,043 customers, 21 attributes:
 
-The analysis is based on the Telco Customer Churn dataset, which includes information about:
+- Demographics — gender, senior-citizen status, partner, dependents
+- Account — tenure (months), contract type, payment method, paperless billing
+- Services — phone, multiple lines, internet type, security/backup/support add-ons, streaming
+- Billing — monthly charges, total charges
+- Target — churn within the observation window (26.5% of customers)
 
-- Customer details (gender, age, partners, dependents)
-- Account information (how long they've been a customer, contract type, payment method)
-- Services used (phone, internet, support, etc.)
-- Charges (monthly and total)
-- Whether the customer left the company (churn status)
+A cleaned copy is checked in at `Analysis/data/telco_churn_cleaned.csv`. Scripts that expect the raw file look for `data/WA_Fn-UseC_-Telco-Customer-Churn.csv` (available from the [IBM sample datasets](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)).
 
-## Key Findings
+## Key results
 
-## Summary of Analysis
+All figures below are computed from the checked-in dataset with fixed seeds (see `Analysis/scripts/` and `Prediction/scripts/`).
 
-1. **Customer Groups**: Senior citizens and customers without dependents tend to leave more often.
+**Churn concentrates early and on flexible contracts.**
 
-2. **Contracts Matter**: Month-to-month contracts have much higher churn rates (>40%) than longer contracts.
+| Cohort | Customers | Churn rate |
+|---|---|---|
+| Month-to-month contract | 3,875 | 42.7% |
+| One-year contract | 1,473 | 11.3% |
+| Two-year contract | 1,695 | 2.8% |
+| Tenure 0–12 months | 2,186 | 47.4% |
+| Tenure 49–72 months | 2,239 | 9.5% |
+| Fiber-optic internet | 3,096 | 41.9% |
 
-3. **Service Types**: Customers with fiber optic internet leave more frequently, while those with extra services like tech support stay longer.
+- Median tenure at churn is 10 months, versus 38 months for retained customers.
+- Strongest positive churn correlates: fiber-optic internet (+0.31), electronic-check payment (+0.30), monthly charges (+0.19). Strongest negative: tenure (−0.35), two-year contract (−0.30).
+- Churned customers represent $139K of $456K (30.5%) in monthly recurring charges.
 
-4. **New vs. Long-term**: New customers (0-12 months) are more likely to leave than those who have stayed longer.
+**Survival analysis (Kaplan-Meier, Cox proportional hazards).** Two-year contracts retain 93.6% of customers through month 72; month-to-month retains 12.9%. Cox hazard ratios: fiber-optic internet HR 2.27, electronic check HR 1.78, one-year contract HR 0.22, two-year contract HR 0.08 (all p < 0.01).
 
-5. **Payment Methods**: Customers using electronic checks leave more often than those using other payment methods.
+**Segmentation (K-Means, k=4 on tenure / monthly / total charges).**
 
-6. **Pricing Impact**: Higher monthly charges often lead to more customers leaving.
+| Segment | Customers | Churn rate | Avg tenure | Avg monthly | Monthly revenue churned |
+|---|---|---|---|---|---|
+| New · High spend | 2,276 | 48.2% | 15 mo | $81 | $91.8K |
+| New · Basic service | 1,703 | 24.7% | 10 mo | $32 | $15.7K |
+| Established · Premium | 1,904 | 15.4% | 60 mo | $93 | $28.9K |
+| Loyal · Value plans | 1,160 | 5.0% | 54 mo | $35 | $2.7K |
 
-7. **Survival Patterns**: Survival analysis shows that churn risk decreases significantly after customers pass the 12-month mark, with contract type being the strongest predictor of retention.
+The "New · High spend" segment accounts for 66% of churned monthly revenue and is the primary retention target.
 
-8. **Cost-Sensitive Modeling**: Traditional churn prediction models optimized for accuracy can be improved by 15-20% in cost-effectiveness when business costs are incorporated into the decision threshold.
+**Classifier benchmark (80/20 stratified holdout, 5-fold CV on the training split, seed 42).** Fourteen models under identical preprocessing; LightGBM and XGBoost tuned with Optuna (60 TPE trials each, AUC objective).
 
-9. **Seasonal Trends**: Churn patterns show seasonal variation with higher rates during specific quarters, and major business events like price changes can impact churn rates by 20-30%.
+| Model | CV accuracy | Test accuracy | ROC AUC | F1 |
+|---|---|---|---|---|
+| Stacked Ensemble v2 (LGBM+XGB+GB+RF+LR) † | 0.807 | **0.811** | **0.849** | 0.614 |
+| Logistic Regression | 0.803 | 0.806 | 0.842 | 0.605 |
+| XGBoost (Optuna) | 0.806 | 0.804 | **0.849** | 0.584 |
+| AdaBoost | 0.807 | 0.803 | 0.843 | 0.581 |
+| Extra Trees | 0.800 | 0.803 | 0.839 | 0.575 |
+| CatBoost | 0.798 | 0.802 | 0.842 | 0.584 |
+| Random Forest | 0.803 | 0.801 | 0.842 | 0.582 |
+| LightGBM (Optuna) | 0.804 | 0.801 | 0.847 | 0.571 |
+| Soft-Voting Ensemble | 0.807 | 0.800 | 0.845 | 0.580 |
+| Gradient Boosting | 0.802 | 0.798 | 0.842 | 0.572 |
+| Hist Gradient Boosting | 0.801 | 0.797 | 0.837 | 0.573 |
+| SVM (RBF) | 0.804 | 0.793 | 0.796 | 0.534 |
+| KNN | 0.790 | 0.778 | 0.815 | 0.578 |
+| Naive Bayes | 0.666 | 0.656 | 0.809 | 0.572 |
 
-## Getting Started
+† Scored at its CV-tuned decision threshold (0.46, chosen on out-of-fold training predictions); all other models at 0.50.
 
+**Final model** (`Prediction/models/final/churn_model_stack_v2.joblib`): stacking ensemble with engineered features (service counts, contract × payment interactions, spend deltas). Holdout: 81.1% accuracy, 0.849 AUC, precision 0.67 / recall 0.57. Ranking quality is the operative metric for retention targeting: the top-scored decile is 75.0% churners (**2.8× lift** over the 26.5% base rate), the top 20% captures 50.8% of all churners, and the top 30% captures 66.8%. Because 73.5% accuracy is attainable by predicting "no churn" for everyone, lift and AUC are the headline metrics; raw accuracy on this dataset plateaus at ~81% across all model families.
 
-- Python 3.7 or higher
-- Basic Python libraries: pandas, numpy, matplotlib, seaborn
+Top features by Gradient Boosting importance: tenure (0.30), fiber-optic internet (0.19), electronic-check payment (0.12), two-year contract (0.07).
 
-### Setup Steps
+**A/B testing framework (simulated cohorts, seeded).** Five retention strategies evaluated with power analysis and significance testing. Highest simulated ROI: free premium tech support for fiber-optic users (+22.8% relative retention lift, ROI 160%) and discount offers for price-sensitive churners (+16.6% lift, ROI 137%). Results in `Analysis/results/ab_test_strategy_results.csv`.
 
-1. Clone repository:
-   ```
-   git clone https://github.com/gil10101/Customer-Churn-Analysis-and-Prediction.git
-   cd Customer-Churn-Analysis-and-Prediction
-   ```
+**Churn trend analysis** operates on a synthetic time index derived from tenure (the source dataset has no calendar dimension); it demonstrates the seasonal-decomposition and event-impact methodology rather than observed calendar effects.
 
-2. Create a virtual environment:
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+## Impact projections
 
-3. Install the required packages:
-   ```
-   pip install -r requirements.txt
-   ```
+Real cohort sizes and churned-customer revenue combined with the simulated A/B lift rates and the final model's targeting capture (contacting the top-30% risk scores reaches 66.8% of churners at roughly a third of blanket-outreach cost). Save rate per strategy = (treatment − baseline retention) / (1 − baseline retention); 12-month revenue horizon against one-time program cost.
 
-### Running the Analysis
+| Strategy (model-targeted) | Pool | Contacted | Customers saved / yr | Net 12-mo impact | ROI |
+|---|---|---|---|---|---|
+| Free premium tech support (fiber-optic users) | 3,096 | 929 | 249 | $216K | 466% |
+| Contract incentive (month-to-month) | 3,875 | 1,162 | 224 | $115K | 141% |
+| Service upgrade (new high-spend) | 1,233 | 370 | 87 | $70K | 318% |
+| Enhanced loyalty program (tenure ≥ 48 mo) | 2,303 | 691 | 35 | $22K | 126% |
+| Discount offer (low-spend) | 2,019 | 606 | 52 | −$10K | −35% |
 
-#### Interactive Jupyter Notebooks
-1. Launch Jupyter environment:
-   ```
-   jupyter notebook notebooks/
-   ```
+Running the four positive-ROI programs projects ~595 customers retained per year, $49K/month of revenue protected ($591K over 12 months), against $167K program cost — net $423K (253% ROI). Blanket (untargeted) outreach drops the contract-incentive program to $22K net and the discount program to −$64K, which is the quantitative case for model-based targeting. Projections inherit the simulated lift rates and are labeled as such; `dashboards/06_impact_planner.html` includes a conservative case at half lift.
 
-2. Start with the master overview:
-   ```
-   Open: 00_master_analysis_overview.ipynb
-   ```
-
-3. Execute notebooks sequentially (01-08) for complete analysis
-
-#### Script-Based Analysis
-1. To explore the data:
-   ```
-   cd Analysis/scripts
-   python exploratory_data_analysis.py
-   ```
-
-2. To run the prediction model:
-   ```
-   cd Prediction/scripts
-   python churn_prediction_model.py
-   ```
-
-3. To run the ensemble prediction model:
-   ```
-   cd Prediction/scripts
-   python ensemble_churn_model.py
-   ```
-
-4. To perform customer segmentation:
-   ```
-   cd Analysis/scripts
-   python customer_segmentation.py
-   ```
-
-5. To run A/B testing on retention strategies:
-   ```
-   cd Analysis/scripts
-   python ab_testing.py
-   ```
-
-6. To perform survival analysis and predict when customers will churn:
-   ```
-   cd Analysis/scripts
-   python churn_survival_analysis.py
-   ```
-
-7. To build a cost-sensitive churn prediction model:
-   ```
-   cd Prediction/scripts
-   python cost_sensitive_churn_model.py
-   ```
-
-8. To analyze churn patterns over time:
-   ```
-   cd Analysis/scripts
-   python churn_trend_analysis.py
-   ```
-
-9. To analyze and visualize customer segments:
-   ```
-   cd Analysis/scripts
-   python generate_segmentation_images.py
-   ```
-
-10. To compare different model performances:
-    ```
-    cd Prediction/evaluation/model_comparison
-    python comparison_analysis.py
-    ```
-
-9. Check the images folders to see the visualizations created.
-
-## Project Organization
-
-The project is organized into folders:
-- **notebooks**: Interactive Jupyter notebooks for comprehensive analysis (NEW)
-  - Complete end-to-end analysis workflow with professional documentation
-  - 9 specialized notebooks covering EDA, modeling, and business insights
-  - Data science implementations with comprehensive visualization
-- **data**: Contains the customer dataset
-- **Analysis**: Scripts and visualizations for exploring the data
-  - **results/segmentation_results**: Customer segment profiles and clustering metrics
-  - **images/segmentation**: Visualizations of customer segments
-- **Prediction**: Models for predicting which customers might leave
-  - **models/baseline**: Baseline prediction models like logistic regression
-  - **models/ensemble**: Ensemble models combining multiple algorithms
-  - **evaluation/model_comparison**: Comparative analysis of different model performances
-- **utils**: Helper functions used across the project
-
-## File Structure
+## Repository layout
 
 ```
-Customer-Churn-Analysis-and-Prediction/
-│
-├── notebooks/                       # Interactive Jupyter notebooks (NEW)
-│   ├── 00_master_analysis_overview.ipynb     # Central navigation and project controller
-│   ├── 01_exploratory_data_analysis.ipynb   # Comprehensive EDA with statistical analysis
-│   ├── 02_customer_segmentation.ipynb       # Multi-algorithm clustering analysis
-│   ├── 03_churn_prediction_modeling.ipynb   # ML model implementations
-│   ├── 04_survival_analysis.ipynb           # Time-to-event modeling and retention
-│   ├── 05_ab_testing_framework.ipynb        # Statistical experimentation framework
-│   ├── 06_cost_sensitive_modeling.ipynb     # Business-optimized prediction models
-│   ├── 07_model_comparison_evaluation.ipynb # Comprehensive model benchmarking
-│   ├── 08_business_insights_recommendations.ipynb # Strategic synthesis and recommendations
-│   └── README.md                            # Detailed notebook documentation
-│
-├── data/                            # Data directory
-│   └── WA_Fn-UseC_-Telco-Customer-Churn.csv  # Telco customer dataset with demographics, services, and churn information
-│
-├── Analysis/                        # Customer data analysis module
-│   ├── scripts/                     # Python scripts for data exploration and analysis
-│   │   ├── exploratory_data_analysis.py  # Generates insights, visualizations, and key statistics
-│   │   ├── customer_segmentation.py      # Performs customer segmentation using clustering techniques
-│   │   ├── ab_testing.py                 # Conducts A/B testing on retention strategies
-│   │   ├── churn_survival_analysis.py    # Performs survival analysis to predict when customers will churn
-│   │   ├── churn_trend_analysis.py       # Analyzes churn patterns over time and impact of business events
-│   │   ├── generate_correlation_heatmap.py  # Creates correlation heatmap for feature relationships
-│   │   └── generate_segmentation_images.py  # Produces visualizations of customer segments
-│   ├── images/                      # Generated visualizations from analysis
-│   │   ├── eda/                     # Exploratory data analysis visualizations
-│   │   ├── segmentation/            # Customer segment visualizations
-│   │   ├── survival_analysis/       # Survival curve plots and hazard ratios
-│   │   ├── churn_trends/            # Time series and seasonal trend visualizations
-│   │   └── correlation/             # Feature correlation heatmaps
-│   ├── models/                      # Analysis-phase model artifacts
-│   ├── docs/                        # Documentation of analysis findings 
-│   └── results/                     # Results from analysis and testing
-│       ├── segmentation_results/    # Customer segment profiles
-│       ├── survival_analysis_results/ # Results from survival analysis models
-│       └── churn_trend_analysis_results/ # Results from churn trend analysis
-│
-├── Prediction/                      # Machine learning models for churn prediction
-│   ├── scripts/                     # Model training and evaluation scripts
-│   │   ├── churn_prediction_model.py     # Neural network model for churn prediction
-│   │   ├── ensemble_churn_model.py       # Ensemble model combining multiple algorithms
-│   │   └── cost_sensitive_churn_model.py # Cost-sensitive model that minimizes business costs
-│   ├── models/                      # Serialized trained model files
-│   │   ├── baseline/                # Basic prediction models
-│   │   ├── ensemble/                # Ensemble model artifacts
-│   │   └── cost_sensitive/          # Cost-sensitive model artifacts
-│   └── evaluation/                  # Model performance assessment
-│       ├── docs/                    # Documentation of evaluations and comparison
-│       ├── images/                  # General images from model testing
-│       ├── model_comparison/        # Comparison of different prediction models
-│       └── cost_sensitive_model_evaluation/ # Evaluation of cost-sensitive models
-│
-├── utils/                           # Shared utility functions and helpers
-│   ├── __init__.py                  # Package initialization
-│   ├── data_preprocessing.py        # Functions for cleaning, transforming, and validating data
-│   ├── survival_utils.py            # Helper functions for survival analysis
-│   └── cost_sensitive_utils.py      # Helper functions for cost-sensitive modeling
-│
-├── requirements.txt                 # Project dependencies
-│
-└── README.md                        # Project documentation and user guide
+├── notebooks/            # Jupyter entry points (01–08) mirroring the analysis stages
+├── Analysis/
+│   ├── scripts/          # EDA, segmentation, survival, A/B testing, trend analysis
+│   ├── data/             # Cleaned dataset, cluster profiles, marketing strategies
+│   ├── docs/             # Generated findings (feature insights, cluster analysis, …)
+│   ├── images/           # Generated figures (eda/, segmentation/, survival_analysis/, …)
+│   └── results/          # Survival, segmentation, and A/B test outputs
+├── Prediction/
+│   ├── scripts/          # Neural network, ensemble, cost-sensitive models
+│   ├── models/           # Serialized model artifacts and metrics
+│   │   └── final/        # Stacked Ensemble v2 (production model) + metadata
+│   └── evaluation/       # Model comparison outputs
+├── dashboards/           # Static HTML dashboards built from the analysis outputs
+├── portfolio-assets/     # Regenerated portfolio figures (PNG)
+├── tools/portfolio/      # Scripts that regenerate results.json, figures, and dashboards
+├── api/                  # FastAPI prediction service (Docker, monitoring, deployment)
+├── utils/                # Shared preprocessing, evaluation, and plotting utilities
+├── tests/                # Pytest suites for pipeline, API, and deployment
+└── requirements.txt
 ```
 
-## Data Quality Assessment
+## Setup
 
-The dataset was assessed for quality issues:
-- No duplicate records were found
-- Missing values were identified in the 'TotalCharges' column for customers with 0 tenure
-- Appropriate data type conversions were applied (e.g., converting categorical variables)
+Requires Python 3.9+.
 
-## Key Features
+```bash
+git clone https://github.com/gil10101/Customer-Churn-Analysis-and-Prediction.git
+cd Customer-Churn-Analysis-and-Prediction
+python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
 
-### Predictive Machine Learning Models
-- **Neural Network Model**: A PyTorch-based deep learning model for churn prediction
-- **Ensemble Model**: Combines multiple algorithms (Logistic Regression, Random Forest, Gradient Boosting) for improved prediction accuracy
-- **Cost-Sensitive Model**: Optimizes for minimizing business costs rather than just accuracy metrics
-- **Hyperparameter-Optimized Model**: Uses grid search to find the best model configuration
+## Running the analysis
 
-### Customer Segmentation
-- **KMeans Clustering**: Automatically groups customers into segments with similar characteristics
-- **DBSCAN Clustering**: Identifies complex customer segments of arbitrary shapes
-- **Segment Profiling**: Detailed analysis of each customer segment, including churn risk and key attributes
-- **Marketing Strategy Generation**: Customized retention approaches for each customer segment
+Scripts are run from their own directory and write figures/results into `Analysis/` and `Prediction/`:
 
-### A/B Testing Framework
-- **Test Planning**: Determines required sample sizes and statistical power
-- **Strategy Simulation**: Simulates the effect of different retention strategies
-- **ROI Analysis**: Calculates expected return on investment for each strategy
-- **Visualization**: Comprehensive visualizations of test results and comparisons
+```bash
+cd Analysis/scripts
+python exploratory_data_analysis.py    # EDA figures + insight docs
+python customer_segmentation.py        # K-Means / DBSCAN segments
+python churn_survival_analysis.py      # Kaplan-Meier + Cox models
+python ab_testing.py                   # Retention-strategy simulations
+python churn_trend_analysis.py         # Seasonal decomposition (synthetic index)
 
-### Survival Analysis
-- **Kaplan-Meier Estimator**: Visualizes survival curves for different customer segments
-- **Cox Proportional Hazards Model**: Identifies factors that influence churn risk over time
-- **Churn Timing Prediction**: Forecasts when customers are most likely to churn
-- **Risk Factor Analysis**: Quantifies the impact of various factors on customer retention
+cd ../../Prediction/scripts
+python churn_prediction_model.py       # PyTorch neural network
+python ensemble_churn_model.py         # Stacked / voting ensembles
+python cost_sensitive_churn_model.py   # Cost-optimized thresholds
+```
 
-### Churn Trend Analysis
-- **Seasonal Pattern Detection**: Identifies monthly and quarterly patterns in churn behavior
-- **Business Event Impact Analysis**: Measures how business decisions affect churn rates
-- **Time Series Decomposition**: Separates trend, seasonal, and residual components of churn
-- **Visualization**: Interactive plots showing churn patterns over time
+Notebooks `notebooks/01–08` provide the same stages in notebook form; `notebooks/00_master_analysis_overview.ipynb` documents execution order and environment checks.
 
-## Results and Insights
+## Dashboards
 
-### Predictive Models
-The ensemble model achieved strong performance metrics with:
-- High accuracy in identifying customers at risk of churning
-- Feature importance analysis identifying key churn indicators
-- Model comparisons to determine the most effective approach
+`dashboards/` contains five static HTML dashboards generated from the analysis outputs (no server required — open in a browser):
 
-### Customer Segments
-Customer segmentation revealed distinct groups with:
-- Varying churn rates and risk profiles
-- Different spending patterns and service preferences
-- Unique characteristics requiring targeted retention approaches
+1. `01_executive_overview.html` — KPIs, churn drivers, revenue at risk
+2. `02_customer_flow_sankey.html` — contract → tenure → outcome flows
+3. `03_segments.html` — segment profiles and churn risk map
+4. `04_retention_survival.html` — survival curves, hazard ratios, interventions
+5. `05_model_performance.html` — benchmark, ROC, confusion matrix, feature importance
+6. `06_impact_planner.html` — projected saves, cost, net impact, and ROI per intervention
 
-### A/B Testing
-A/B testing of retention strategies showed that:
-- Different strategies work best for different customer segments
-- Some interventions provide significant lifts in retention rates
-- ROI analysis helps prioritize which strategies to implement first
+## Prediction API
 
-### Survival Analysis
-Survival analysis revealed important temporal patterns:
-- Contract type is the strongest predictor of customer longevity
-- Customers who survive the first 6 months have significantly lower churn risk
-- Specific combinations of services can increase expected customer lifetime by over 40%
-- Customers with certain profiles show predictable churn timing patterns
+`api/` contains a FastAPI service exposing the trained model with request validation, Redis caching, Prometheus monitoring, and Docker deployment. See `api/README.md` and `api/DEPLOYMENT.md`.
 
-### Cost-Sensitive Modeling
-Cost-sensitive modeling demonstrated business advantages:
-- Optimizing decision thresholds reduced overall business costs by 15-20%
-- Different model types have different optimal thresholds for cost minimization
-- ROI-based modeling provides more actionable insights than accuracy-based approaches
+```bash
+cd api && python run_server.py    # development server on :8000
+```
 
-### Churn Trend Analysis
-Temporal analysis of churn patterns showed:
-- Clear seasonal variation with higher churn in specific months
-- Major business events like price changes can impact churn rates by 20-30%
-- Certain customer segments show different seasonal sensitivity
-- Early detection of unusual churn patterns can enable proactive intervention
+## Testing
 
-## Future Work
+```bash
+pytest tests/
+```
 
-- Create a dashboard for real-time monitoring of churn risk factors
-- Implement recommendation systems for personalized retention offers
-- Develop more sophisticated survival models with time-varying covariates
-- Incorporate customer sentiment analysis from support interactions
-- Expand cost-sensitive models to include variable costs across customer segments
-
-
+Covers feature engineering, imbalance handling, the training pipeline, the prediction service, API integration, and deployment validation.

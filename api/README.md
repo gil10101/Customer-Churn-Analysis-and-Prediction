@@ -1,6 +1,6 @@
 # Customer Churn Prediction API
 
-A FastAPI-based REST API for customer churn prediction with advanced ML-powered risk assessment and actionable recommendations.
+A FastAPI-based REST API serving the trained churn model: per-customer risk scores, batch predictions, and recommendation payloads.
 
 ## Features
 

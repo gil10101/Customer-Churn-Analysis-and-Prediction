@@ -1,3 +1,0 @@
-2025-08-22 01:36:54,975 - notebook.api.main - INFO - info:105 - Received feedback for customer TEST_API_001
-2025-08-22 01:36:54,975 - notebook.api.main - INFO - info:105 - Processing feedback: {'customer_id': 'TEST_API_001', 'prediction_id': 'pred_123', 'actual_churn': True, 'intervention_applied': True, 'intervention_type': 'discount_offer', 'outcome_date': '2024-01-15', 'notes': 'Customer churned despite intervention', 'received_timestamp': '2025-08-22T01:36:54.975387'}
-2025-08-22 01:36:54,976 - notebook.api.main - INFO - info:105 - Feedback processed for customer TEST_API_001

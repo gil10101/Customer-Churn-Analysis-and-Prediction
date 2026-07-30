@@ -9,3 +9,9 @@ data/*
 .kiro
 
 .env*
+
+# runtime logs
+logs/
+catboost_info/
+__pycache__/
+*.pyc
