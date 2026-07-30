@@ -285,7 +285,12 @@ class FeatureEngineer:
         base_support_rate = 0.5  # Base tickets per month
         
         # Calculate support tickets per month based on customer profile
-        service_complexity = df_enhanced.get('ActiveServicesCount', 1)
+        # Default must stay a Series: a scalar default would collapse the
+        # arithmetic below to a numpy array, whose clip() rejects lower/upper
+        if 'ActiveServicesCount' in df_enhanced.columns:
+            service_complexity = df_enhanced['ActiveServicesCount']
+        else:
+            service_complexity = pd.Series(1, index=df_enhanced.index)
         charge_factor = df_enhanced['MonthlyCharges'] / 100  # Normalize charges
         
         df_enhanced['support_tickets_per_month'] = (

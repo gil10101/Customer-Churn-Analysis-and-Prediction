@@ -57,6 +57,12 @@ def prepare_features_target(data):
         for col in cat_cols:
             df[col] = df[col].fillna(df[col].mode()[0])
     
+    # Drop identifier columns before encoding — one-hot encoding customerID
+    # would add one noise feature per customer and leak row identity
+    id_cols = [c for c in ['customerID'] if c in df.columns]
+    if id_cols:
+        df = df.drop(columns=id_cols)
+
     # Handle categorical variables
     cat_cols = df.select_dtypes(include=['object']).columns
     df_encoded = pd.get_dummies(df, columns=cat_cols, drop_first=True)

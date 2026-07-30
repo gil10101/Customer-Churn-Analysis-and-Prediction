@@ -86,6 +86,8 @@ app.add_middleware(
 # Pydantic models for API requests/responses
 class CustomerInputAPI(BaseModel):
     """API model for customer input data."""
+    model_config = {"extra": "forbid"}
+
     customer_id: str = Field(..., description="Unique customer identifier")
     
     # Demographics
@@ -257,13 +259,10 @@ async def root():
 
 
 @app.post("/predict", response_model=PredictionResultAPI)
-async def predict_single_customer(
-    customer: CustomerInputAPI,
-    service: PredictionService = Depends(get_prediction_service)
-):
+async def predict_single_customer(customer: CustomerInputAPI):
     """
     Predict churn probability for a single customer.
-    
+
     Returns comprehensive risk assessment including:
     - Churn probability and risk level
     - Confidence score
@@ -271,6 +270,9 @@ async def predict_single_customer(
     - Actionable recommendations
     - Business metrics (CLV, retention cost-benefit)
     """
+    # Resolved inside the handler so request validation runs first: a
+    # malformed body must return 422 even when no model is loaded
+    service = get_prediction_service()
     try:
         logger.info(f"Processing prediction request for customer: {customer.customer_id}")
         
@@ -298,14 +300,14 @@ async def predict_single_customer(
 async def predict_batch_customers(
     request: BatchPredictionRequest,
     background_tasks: BackgroundTasks,
-    service: PredictionService = Depends(get_prediction_service)
 ):
     """
     Predict churn probability for multiple customers in batch.
-    
+
     Processes up to 1000 customers in a single request.
     Returns aggregated results with error handling for individual failures.
     """
+    service = get_prediction_service()
     start_time = datetime.now()
     batch_id = f"batch_{start_time.strftime('%Y%m%d_%H%M%S')}_{len(request.customers)}"
     

@@ -258,7 +258,7 @@ class ImbalanceHandler:
             for model in base_models:
                 # Wrap each model with balanced bagging
                 balanced_model = BaggingClassifier(
-                    base_estimator=model,
+                    estimator=model,
                     n_estimators=10,
                     random_state=self.random_state,
                     n_jobs=-1
@@ -283,7 +283,8 @@ class ImbalanceHandler:
             DataFrame with evaluation results
         """
         self.logger.info("Evaluating imbalance handling strategies")
-        
+
+        custom_models = models is not None
         if models is None:
             models = [
                 LogisticRegression(random_state=self.random_state, max_iter=1000),
@@ -351,6 +352,10 @@ class ImbalanceHandler:
                         })
                 
                 elif strategy.method == 'ensemble':
+                    # Ensemble strategies substitute their own classifier; when
+                    # the caller supplied specific models to evaluate, skip them
+                    if custom_models:
+                        continue
                     # Ensemble approach
                     ensemble_model = strategy.parameters['classifier']
                     

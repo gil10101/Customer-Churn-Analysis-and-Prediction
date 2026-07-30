@@ -28,8 +28,13 @@ class TestDockerDeployment:
     
     @pytest.fixture(scope="class")
     def docker_client(self):
-        """Docker client fixture."""
-        return docker.from_env()
+        """Docker client fixture; skips when no daemon is reachable."""
+        try:
+            client = docker.from_env()
+            client.ping()
+            return client
+        except Exception:
+            pytest.skip("Docker daemon not available")
     
     def test_dockerfile_exists(self):
         """Test that Dockerfile exists and is valid."""

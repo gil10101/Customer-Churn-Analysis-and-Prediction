@@ -1055,5 +1055,8 @@ def quick_prediction(customer_data: CustomerInput, model_name: str = "churn_pred
     Returns:
         Prediction result
     """
-    service = PredictionService(default_model_name=model_name, default_model_version=model_version)
+    kwargs = {"default_model_name": model_name}
+    if model_version != "latest":
+        kwargs["default_model_version"] = model_version
+    service = PredictionService(**kwargs)
     return service.predict(customer_data)

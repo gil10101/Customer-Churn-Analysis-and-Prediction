@@ -161,7 +161,10 @@ class ModelTrainingPipeline:
             DataFrame with strategy comparison results
         """
         logger.info("Starting imbalance strategy comparison")
-        
+
+        if len(X) == 0 or len(y) == 0:
+            raise ValueError("Cannot compare strategies on an empty dataset")
+
         if models is None:
             models = list(self.base_models.keys())
         
@@ -794,12 +797,16 @@ class ModelTrainingPipeline:
             y_test = y_test.values
         
         # Evaluate model
+        # The evaluator carries default BusinessMetrics; an explicit argument
+        # overrides them rather than gating whether they are computed at all
+        if business_metrics is not None:
+            self.evaluator.business_metrics = business_metrics
         performance = self.evaluator.evaluate_model(
             model=training_result.best_model,
             X_test=X_test,
             y_test=y_test,
             model_name=f"{training_result.model_name}_{training_result.strategy_name}",
-            calculate_business_metrics=business_metrics is not None
+            calculate_business_metrics=True
         )
         
         # Update training result with performance metrics
